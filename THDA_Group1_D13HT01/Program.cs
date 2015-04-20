@@ -489,7 +489,7 @@ namespace THDA_Group1_D13HT01
                                     tkm[i] += dscd.getDSChuyenDi()[j].getQuangDuong();
                             }
 
-                            //Console.WriteLine("{0,12}   {1,12}", bks[i], tkm[i]);
+
                         }
 
                         int max = 0;
@@ -551,7 +551,7 @@ namespace THDA_Group1_D13HT01
                             Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", i + 1, tam.getMaXe(), tam.getTenTaiXe(), tam.getSoXe(), loaixe.getNameByID(tam.getLoaiXe()), maxkm, string.Format("{0:0,0}", thanhtien));
                             Console.BackgroundColor = ConsoleColor.Black;
                         }
-                        Console.WriteLine("\nDanh sách này có {0} xe.\n", count+1);
+                        Console.WriteLine("\nDanh sách này có {0} xe.\n", count + 1);
                     }
                     catch (Exception ex)
                     {
