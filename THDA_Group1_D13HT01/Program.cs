@@ -18,8 +18,6 @@ namespace THDA_Group1_D13HT01
         static extern bool SetConsoleOutputCP(uint wCodePageID);
         // -/-Hỗ trợ hiển thị tiếng Việt
 
-        private const string FILE_Summary = "BaoCaoTongHop.txt";
-
         static void Main(string[] args)
         {
             // Kích thước của sổ Console
@@ -86,8 +84,8 @@ namespace THDA_Group1_D13HT01
                 Console.WriteLine("------------------------------------------------------------");
 
                 //----------- Các chức năng khác
-                Console.WriteLine("30. Xuất dữ liệu ra màn hình (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).");
-                Console.WriteLine("31. Xuất dữ liệu ra file (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).");
+                Console.WriteLine("30. Xuất dữ liệu ra màn hình/file (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).");
+
                 Console.WriteLine("\n>>> Thống kê sơ bộ [Đã bật nạp dữ liệu tự động từ file text]");
                 Console.WriteLine("Tổng loại xe: {0}", loaixe.getN());
                 Console.WriteLine("Tổng số xe: {0}", dsxe.getN());
@@ -106,6 +104,8 @@ namespace THDA_Group1_D13HT01
                 {
                     /// Nhập sai
                     chon = -1;
+                    ErrorLogs el = new ErrorLogs(ex.ToString());
+                    el.write();
                 }
 
                 // Xử lý các chức năng
@@ -371,7 +371,7 @@ namespace THDA_Group1_D13HT01
 
                             try
                             {
-                                file = new StreamWriter(FILE_Summary);
+                                file = new StreamWriter(Properties.Settings.Default.FILE_BAOCAO);
                                 file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", "STT", "Mã Xe", "Tên tài xế", "Biển kiểm soát", "Loại xe", "Tổng QĐ", "Tổng tiền");
                                 file.WriteLine("________________________________________________________________________________________________________________");
                                 for (int i = 0; i < dsxe.getN(); i++)
@@ -381,7 +381,7 @@ namespace THDA_Group1_D13HT01
 
                                 s = "t";
                                 file.Close();
-                                Console.WriteLine("Đã lưu vào {0}", Path.GetFullPath(FILE_Summary));
+                                Console.WriteLine("Đã lưu vào {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
                             }
                             catch (Exception ex)
                             {
@@ -621,7 +621,7 @@ namespace THDA_Group1_D13HT01
                             {
                                 try
                                 {
-                                    StreamWriter file = new StreamWriter(FILE_Summary);
+                                    StreamWriter file = new StreamWriter(Properties.Settings.Default.FILE_BAOCAO);
 
                                     if (s == "d")
                                     {
@@ -642,7 +642,7 @@ namespace THDA_Group1_D13HT01
                                         file.WriteLine(dscd.XuatS());
 
                                     file.Close();
-                                    Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(FILE_Summary));
+                                    Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
                                 }
                                 catch (Exception ex)
                                 {

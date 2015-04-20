@@ -72,6 +72,8 @@ namespace THDA_Group1_D13HT01
             catch (Exception ex)
             {
                 n = 0;
+                ErrorLogs el = new ErrorLogs(ex.ToString());
+                el.write();
             }
 
             for (int i = 0; i < n; i++)

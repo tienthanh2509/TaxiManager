@@ -51,6 +51,8 @@ namespace THDA_Group1_D13HT01
             catch (Exception ex)
             {
                 n = 0;
+                ErrorLogs el = new ErrorLogs(ex.ToString());
+                el.write();
             }
 
             for (int i = 0; i < n; i++)
@@ -98,6 +100,8 @@ namespace THDA_Group1_D13HT01
             catch (Exception ex)
             {
                 Console.WriteLine("Có lỗi không rõ đã xảy ra");
+                ErrorLogs el = new ErrorLogs(ex.ToString());
+                el.write();
             }
         }
 

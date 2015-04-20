@@ -85,5 +85,14 @@ namespace THDA_Group1_D13HT01.Properties {
                 return ((int)(this["MAX_SL_XE"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("logs.txt")]
+        public string FILE_LOGS {
+            get {
+                return ((string)(this["FILE_LOGS"]));
+            }
+        }
     }
 }

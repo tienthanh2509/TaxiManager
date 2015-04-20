@@ -59,5 +59,64 @@ namespace THDA_Group1_D13HT01.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5000
+        ///2	73.6	2015-04-07 09:18:27	2015-04-07 10:41:46
+        ///12	8.9	2015-04-06 18:47:48	2015-04-06 18:58:42
+        ///2	88.7	2015-04-05 23:43:22	2015-04-06 01:15:07
+        ///11	95.2	2015-04-06 13:41:56	2015-04-06 16:52:20
+        ///7	96.8	2015-04-07 14:04:55	2015-04-07 16:50:52
+        ///17	4.6	2015-04-08 14:04:30	2015-04-08 14:10:30
+        ///3	84.4	2015-04-07 23:17:16	2015-04-08 00:41:40
+        ///7	84.8	2015-04-08 00:08:53	2015-04-08 02:16:05
+        ///19	35.2	2015-04-08 02:42:32	2015-04-08 03:36:41
+        ///20	80.8	2015-04-08 12:37:44	2015-04-08 14:14:42
+        ///12	41.2	2015-04-08 01:3 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DanhSachChuyenDi {
+            get {
+                return ResourceManager.GetString("DanhSachChuyenDi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3
+        ///0	Xe Thuong
+        ///1	Xe VIP
+        ///2	Xe Hop Dong
+        ///.
+        /// </summary>
+        internal static string DanhSachLoaiXe {
+            get {
+                return ResourceManager.GetString("DanhSachLoaiXe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20
+        ///1	54T3-6222	Hoang Huy Hung	1
+        ///2	56O5-3929	Hoang Huy Hung	1
+        ///3	26I8-4471	Nguyen Thi Binh	0
+        ///4	25D8-2032	Doan Hoang Phung	1
+        ///5	49T6-3544	Phan Ba Minh	0
+        ///6	54N6-6764	Pham Minh Hieu	1
+        ///7	94O8-6631	Mai Thi Thanh Tra	1
+        ///8	49N3-8619	Le Ba Quang	1
+        ///9	17P1-7429	Nguyen Binh An	1
+        ///10	47V9-8676	Vo Thi Ngoc Thao	0
+        ///11	51I5-1349	Nguyen Trung Nam	0
+        ///12	11A8-7548	Nguyen Xuan Viet Anh	0
+        ///13	36F9-3141	Hoang The Dung	0
+        ///14	79A6-4256	Nguyen Huynh Quoc Bao	0
+        ///15	51P8-6462	Thai Vu Tran	1
+        ///16	38M2-2899	Hoang Huy Hung	2
+        ///17	93 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DanhSachXe {
+            get {
+                return ResourceManager.GetString("DanhSachXe", resourceCulture);
+            }
+        }
     }
 }
