@@ -22,7 +22,7 @@ namespace THDA_Group1_D13HT01.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace THDA_Group1_D13HT01.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("THDA_Group1_D13HT01.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace THDA_Group1_D13HT01.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -74,7 +74,7 @@ namespace THDA_Group1_D13HT01.Properties {
         ///20	80.8	2015-04-08 12:37:44	2015-04-08 14:14:42
         ///12	41.2	2015-04-08 01:3 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string DanhSachChuyenDi {
+        public static string DanhSachChuyenDi {
             get {
                 return ResourceManager.GetString("DanhSachChuyenDi", resourceCulture);
             }
@@ -87,7 +87,7 @@ namespace THDA_Group1_D13HT01.Properties {
         ///2	Xe Hop Dong
         ///.
         /// </summary>
-        internal static string DanhSachLoaiXe {
+        public static string DanhSachLoaiXe {
             get {
                 return ResourceManager.GetString("DanhSachLoaiXe", resourceCulture);
             }
@@ -113,7 +113,7 @@ namespace THDA_Group1_D13HT01.Properties {
         ///16	38M2-2899	Hoang Huy Hung	2
         ///17	93 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string DanhSachXe {
+        public static string DanhSachXe {
             get {
                 return ResourceManager.GetString("DanhSachXe", resourceCulture);
             }
