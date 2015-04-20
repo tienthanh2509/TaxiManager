@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="THDA_Group1_D13HT01.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FILE_DANHSACHLOAIXE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DanhSachLoaiXe.txt</Value>
+    </Setting>
+    <Setting Name="FILE_DANHSACHXE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DanhSachXe.txt</Value>
+    </Setting>
+    <Setting Name="FILE_DANHSACHCHUYENDI" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DanhSachChuyenDi.txt</Value>
+    </Setting>
+    <Setting Name="FILE_BAOCAO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BaoCao.txt</Value>
+    </Setting>
+    <Setting Name="MAX_SL_LOAIXE" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="MAX_SL_CHUYENDI" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">500000</Value>
+    </Setting>
+    <Setting Name="MAX_SL_XE" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
