@@ -1,0 +1,5 @@
+language: csharp
+solution: THDA_Group1_D13HT01.sln
+
+mono:
+  - latest
