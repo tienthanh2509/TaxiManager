@@ -28,8 +28,8 @@
     <ErrorReportUrl>https://www.facebook.com/groups/d13ht01/%3ferror=true</ErrorReportUrl>
     <TargetCulture>vi-VN</TargetCulture>
     <ProductName>Taxi Management</ProductName>
-    <PublisherName>Phạm Tiến Thành</PublisherName>
-    <ApplicationRevision>15</ApplicationRevision>
+    <PublisherName>Pham Tien Thanh</PublisherName>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -65,7 +65,7 @@
     <ManifestCertificateThumbprint>F983D32A3B4BF92A8BEEB61F3E4507AB02F5B9B0</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Phạm Tiến Thành - 2020.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Pham Tien Thanh - 2020.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>

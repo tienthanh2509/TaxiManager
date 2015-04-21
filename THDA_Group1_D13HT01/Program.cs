@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 // -/-Hỗ trợ hiển thị tiếng Việt
 
 using System.IO;
+using System.Diagnostics;
 
 namespace THDA_Group1_D13HT01
 {
@@ -647,6 +648,11 @@ namespace THDA_Group1_D13HT01
 
                                     file.Close();
                                     Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
+                                    Process notePad = new Process();
+                                    //notePad.StartInfo.FileName = "notepad.exe";
+                                    notePad.StartInfo.FileName = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                                    //notePad.StartInfo.Arguments = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                                    notePad.Start();
                                 }
                                 catch (Exception ex)
                                 {

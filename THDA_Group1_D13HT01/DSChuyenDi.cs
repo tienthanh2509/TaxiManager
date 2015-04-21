@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
 
 namespace THDA_Group1_D13HT01
 {
@@ -12,7 +13,6 @@ namespace THDA_Group1_D13HT01
         private int n; // Tổng loại chuyến đi
         private int maxsize = Properties.Settings.Default.MAX_SL_CHUYENDI; // Giới hạn lưu trữ tối đa
         private string datafile = Properties.Settings.Default.FILE_DANHSACHCHUYENDI; // Địa chỉ file lưu dữ liệu
-        private const string FILE_REPORT = "BaoCaoTaiChinh.txt";
 
         public DSChuyenDi()
         {
@@ -144,20 +144,26 @@ namespace THDA_Group1_D13HT01
                 return;
             }
 
-            System.IO.StreamWriter file = new System.IO.StreamWriter(FILE_REPORT);
+            System.IO.StreamWriter file = new System.IO.StreamWriter(Properties.Settings.Default.FILE_BAOCAO);
             file.WriteLine("{0,12}  {1,12}  {2,17}  {3,10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
             for (int i = 0; i < n; i++)
                 file.WriteLine("{0,12}  {1}", i + 1, dsCD[i].XuatS());
             file.WriteLine("\n---------------------------\nDanh sách này có {0} chuyến đi.", n);
             file.Close();
-            Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(FILE_REPORT));
+            Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
+
+            Process notePad = new Process();
+            //notePad.StartInfo.FileName = "notepad.exe";
+            notePad.StartInfo.FileName = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+            //notePad.StartInfo.Arguments = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+            notePad.Start();
         }
 
         public void Xuat_File()
         {
             if (n <= 0)
             {
-                Console.WriteLine("Hiện có không có loại xe nào trong danh sách!");
+                Console.WriteLine("Hiện có không có chuyến đi nào trong danh sách!");
                 return;
             }
 
@@ -172,6 +178,11 @@ namespace THDA_Group1_D13HT01
                 file.Close();
 
                 Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(datafile));
+                Process notePad = new Process();
+                //notePad.StartInfo.FileName = "notepad.exe";
+                notePad.StartInfo.FileName = Path.GetFullPath(datafile);
+                //notePad.StartInfo.Arguments = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                notePad.Start();
             }
             catch (Exception ex)
             {

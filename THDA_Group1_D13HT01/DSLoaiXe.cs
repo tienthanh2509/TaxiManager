@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Configuration;
+using System.Diagnostics;
 
 /**
  * Class Quản lý Các Loại Xe
@@ -170,6 +171,11 @@ namespace THDA_Group1_D13HT01
                 file.Close();
 
                 Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(datafile));
+                Process notePad = new Process();
+                //notePad.StartInfo.FileName = "notepad.exe";
+                notePad.StartInfo.FileName = Path.GetFullPath(datafile);
+                //notePad.StartInfo.Arguments = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                notePad.Start();
 
             }
             catch (Exception ex)
