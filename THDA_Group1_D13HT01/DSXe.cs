@@ -214,5 +214,33 @@ namespace THDA_Group1_D13HT01
                 Console.WriteLine("Có lỗi không rõ đã xảy ra, chi tiết: " + ex.Message);
             }
         }
+        public void Swap(ref Xe x1, ref Xe x2)
+        {
+            Xe temp = new Xe();
+            temp.setLoaiXe(x1.getLoaiXe());
+            temp.setMaXe(x1.getMaXe());
+            temp.setSoXe(x1.getSoXe());
+            temp.setTenTaiXe(x1.getTenTaiXe());
+            x1.setLoaiXe(x2.getLoaiXe());
+            x1.setMaXe(x2.getMaXe());
+            x1.setSoXe(x2.getSoXe());
+            x1.setTenTaiXe(x2.getTenTaiXe());
+            x2.setLoaiXe(temp.getLoaiXe());
+            x2.setMaXe(temp.getMaXe());
+            x2.setSoXe(temp.getSoXe());
+            x2.setTenTaiXe(temp.getTenTaiXe());
+        }
+        public void interchangesort()
+        {
+            for (int i = 0; i < n - 1; i++)
+                for (int j = i + 1; j < n; j++)
+                {
+                    int tempi = Convert.ToInt32(getXEbyID(i).getSoXe().Trim().Substring(0, 2));
+                    int tempj = Convert.ToInt32(getXEbyID(j).getSoXe().Trim().Substring(0, 2));
+                    // int tempmid = convert.toint32(getxebyid((i+j)/2).getsoxe().trim().substring(0, 2));
+                    if (tempi > tempj)
+                        Swap(ref getDSXe()[i], ref getDSXe()[j]);
+                }
+        }
     }
 }

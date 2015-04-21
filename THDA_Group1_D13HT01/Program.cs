@@ -559,6 +559,173 @@ namespace THDA_Group1_D13HT01
                         System.Console.WriteLine(ex.Message);
                     }
                 }
+                // Sắp xếp danh sách xe tăng dần theo biển số xe
+                else if (chon == 10)
+                {
+                    Console.Clear();
+                    
+                    StreamWriter file;
+                    string s = "";
+                    dsxe.interchangesort();
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine(">>> 10. Sắp xếp danh sách tăng dần theo số xe.");
+                        Console.WriteLine("m. Xuất danh sách ra màn hình");
+                        Console.WriteLine("f. Xuất danh sách ra file");
+                        Console.WriteLine("---------");
+                        Console.WriteLine("t. Quay lại");
+                        Console.Write("Bạn chọn: ");
+                        s = Console.ReadLine().ToLower();
+
+
+                        if (s == "m")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", "STT", "Mã Xe", "Tên tài xế", "Biển kiểm soát", "Loại xe");
+                            Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+                           
+                            for (int i = 0; i < dsxe.getN(); i++)
+                            {
+                                if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
+                                Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", i + 1, dsxe.getXEbyID(i).getMaXe(), dsxe.getXEbyID(i).getTenTaiXe(), dsxe.getXEbyID(i).getSoXe(), loaixe.getNameByID(dsxe.getXEbyID(i).getLoaiXe()));
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+
+                            Console.WriteLine("\nDanh sách này có {0} xe.\n", dsxe.getN());
+
+                            s = "t";
+                        }
+                        else if (s == "f")
+                        {
+
+                            try
+                            {
+                                file = new StreamWriter(Properties.Settings.Default.FILE_BAOCAO);
+                                file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", "STT", "Mã Xe", "Tên tài xế", "Biển kiểm soát", "Loại xe");
+                                file.WriteLine("________________________________________________________________________________________________________________");
+                                for (int i = 0; i < dsxe.getN(); i++)
+                                    file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", i + 1, dsxe.getXEbyID(i).getMaXe(), dsxe.getXEbyID(i).getTenTaiXe(), dsxe.getXEbyID(i).getSoXe(), loaixe.getNameByID(dsxe.getXEbyID(i).getLoaiXe()));
+
+                                file.WriteLine("\nDanh sách này có {0} xe.\n", dsxe.getN());
+
+                                s = "t";
+                                file.Close();
+                                Console.WriteLine("Đã lưu vào {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Có lỗi không rõ đã xảy ra, chi tiết: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vui lòng nhập đúng!");
+                            Console.WriteLine("--------------");
+                            Console.ReadKey();
+                            //s = "t";
+                        }
+
+                    } while (s != "t");
+                }
+                /**
+                 * Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất
+                 */
+                else if (chon == 11)
+                {
+                    
+                    Console.Clear();
+                    Console.WriteLine(">>> 11. Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất).");
+
+                   
+
+                    Xe[,] mang_luu_temp = new Xe[loaixe.getN(), dsxe.getN()];
+
+                    int nloai = loaixe.getN();
+                    int i, j;
+                    //B1: Tìm tất cả các xe cho từng loại 
+                    int q = 0, w = 0, e = 0;
+                    for (j = 0; j < dsxe.getN(); j++)
+                    {
+
+                        if (dsxe.getDSXe()[j].getLoaiXe() == 0)
+                        {
+                            mang_luu_temp[0, q] = new Xe();
+                           
+                            mang_luu_temp[0, q] = dsxe.getDSXe()[j];
+                           
+                            q++;
+                        }
+                        else if (dsxe.getDSXe()[j].getLoaiXe() == 1)
+                        {
+                            mang_luu_temp[1, w] = new Xe();
+                            mang_luu_temp[1, w] = dsxe.getDSXe()[j];
+                            w++;
+                        }
+                        else if (dsxe.getDSXe()[j].getLoaiXe() == 2)
+                        {
+                            mang_luu_temp[2, e] = new Xe();
+                            mang_luu_temp[2, e] = dsxe.getDSXe()[j];
+                            e++;
+                        }
+                    }
+                    // B2: Tính tổng quảng đường cho tất cả các xe và tìm giá trị lớn nhất
+                    double[,] tongkm = new double[loaixe.getN(), dsxe.getN()];
+                    double maxt = 0, maxv = 0, maxhd = 0;
+                    for (i = 0; i < q; i++)
+                    {
+                        tongkm[0, i] = 0;
+                        for (j = 0; j < dscd.getN(); j++)
+                        {
+                            if (dscd.getDSChuyenDi()[j].getMaXe() == mang_luu_temp[0, i].getMaXe())
+                                tongkm[0, i] += dscd.getDSChuyenDi()[j].getQuangDuong();
+
+                        }
+                        if (maxt < tongkm[0, i]) maxt = tongkm[0, i];
+                    }
+                    for (i = 0; i < w; i++)
+                    {
+                        tongkm[1, i] = 0;
+                        for (j = 0; j < dscd.getN(); j++)
+                        {
+                            if (dscd.getDSChuyenDi()[j].getMaXe() == mang_luu_temp[1, i].getMaXe())
+                                tongkm[1, i] += dscd.getDSChuyenDi()[j].getQuangDuong();
+
+                        }
+                        if (maxv < tongkm[0, i]) maxv = tongkm[1, i];
+                    }
+
+                    for (i = 0; i < e; i++)
+                    {
+                        tongkm[2, i] = 0;
+                        for (j = 0; j < dscd.getN(); j++)
+                        {
+                            if (dscd.getDSChuyenDi()[j].getMaXe() == mang_luu_temp[2, i].getMaXe())
+                                tongkm[2, i] += dscd.getDSChuyenDi()[j].getQuangDuong();
+
+                        }
+                        if (maxhd < tongkm[0, i]) maxhd = tongkm[2, i];
+                    }
+                    // B3: Xuất danh sách
+                    Console.WriteLine("{0, 12}  {1, 12} {2,12}", "Loại", "Biển số xe", "Tổng số km");
+                    
+                    for (i = 0; i < q; i++)
+                    {
+                        if (maxt == tongkm[0, i])
+                            Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Thường", mang_luu_temp[0, i].getSoXe(), String.Format("{0:0,#}", tongkm[0, i]));
+                    }
+                    for (i = 0; i < w; i++)
+                    {
+                        if (maxv == tongkm[1, i])
+                            Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Vip", mang_luu_temp[1, i].getSoXe(), String.Format("{0:0,#}", tongkm[1, i]));
+                    }
+                    for (i = 0; i < e; i++)
+                    {
+                        if (maxhd == tongkm[2, i])
+                            Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Hợp Đồng", mang_luu_temp[2, i].getSoXe(), String.Format("{0:0,#}", tongkm[2, i]));
+                    }
+                    Console.ReadKey();
+                }
                 /**
                  * Xuất dữ liệu ra màn hình (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).
                  */
