@@ -1,6 +1,8 @@
 # TaxiManager
 Quản lý taxi, D13HT01
 
+[![Build Status](https://api.travis-ci.org/tienthanh2509/TaxiManager.svg?branch=master)](https://travis-ci.org/tienthanh2509/TaxiManager)
+
 	*******************************************************************"
 	*              Chào mừng đến với chương trình quản lý xe taxi     *"
 	*            được thực hiện bới nhóm 1, lớp D13HT01               *"
