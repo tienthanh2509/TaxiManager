@@ -559,10 +559,6 @@ namespace THDA_Group1_D13HT01
                         System.Console.WriteLine(ex.Message);
                     }
                 }
-                else if (chon == 10)
-                { 
-                    
-                }
                 /**
                  * Xuất dữ liệu ra màn hình (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).
                  */
