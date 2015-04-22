@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Configuration;
 
 /**
  * Class Quản lý Các Loại Xe
@@ -17,23 +16,23 @@ namespace THDA_Group1_D13HT01
     class DSLoaiXe
     {
         private string[] dsLoai; // Mảng lưu tên loại xe, chỉ số mảng sẽ là mã loại xe
+        public string[] DsLoai
+        {
+            get { return dsLoai; }
+            set { dsLoai = value; }
+        }
         private int n; // Tổng loại xe
+        public int N
+        {
+            get { return n; }
+            set { n = value; }
+        }
+
         private int maxsize = Properties.Settings.Default.MAX_SL_LOAIXE; // Giới hạn lưu trữ tối đa
-        private string datafile = Properties.Settings.Default.FILE_DANHSACHLOAIXE; // Địa chỉ file lưu dữ liệu
 
         public DSLoaiXe()
         {
             dsLoai = new String[maxsize];
-        }
-
-        public int getN()
-        {
-            return n;
-        }
-
-        public string[] getDSLoai()
-        {
-            return dsLoai;
         }
 
         // Nhập các loại xe từ bàn phím
@@ -74,7 +73,7 @@ namespace THDA_Group1_D13HT01
         {
             try
             {
-                StreamReader myfile = File.OpenText(datafile);
+                StreamReader myfile = File.OpenText(Properties.Settings.Default.FILE_DANHSACHLOAIXE);
                 n = int.Parse(myfile.ReadLine());
                 Console.WriteLine("Số lượng loại xe: " + n);
 
@@ -94,11 +93,11 @@ namespace THDA_Group1_D13HT01
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("\n{0} không tồn tại", datafile);
+                Console.WriteLine("\n{0} không tồn tại", Properties.Settings.Default.FILE_DANHSACHLOAIXE);
             }
             catch (IOException)
             {
-                Console.WriteLine("\n{0} đã tồn tại", datafile);
+                Console.WriteLine("\n{0} đã tồn tại", Properties.Settings.Default.FILE_DANHSACHLOAIXE);
             }
             catch (Exception ex)
             {
@@ -161,7 +160,7 @@ namespace THDA_Group1_D13HT01
 
             try
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(datafile);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(Properties.Settings.Default.FILE_DANHSACHLOAIXE);
                 file.WriteLine("{0}", n);
                 for (int i = 0; i < n; i++)
                 {
@@ -169,12 +168,12 @@ namespace THDA_Group1_D13HT01
                 }
                 file.Close();
 
-                Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(datafile));
+                Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHLOAIXE));
 
                 // Mở tệp với NotePad++
                 RunApps run = new RunApps();
                 //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                run.Argument = Path.GetFullPath(datafile);
+                run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHLOAIXE);
                 run.Run_With_NotePadPlusPlus();
             }
             catch (Exception ex)

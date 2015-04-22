@@ -8,10 +8,32 @@ namespace THDA_Group1_D13HT01
     class Xe
     {
         private int maxe;
-        private string soxe;
-        private string tentaixe;
-        private int loaixe;
+        public int Maxe
+        {
+            get { return maxe; }
+            set { maxe = value; }
+        }
 
+        private string soxe;
+        public string Soxe
+        {
+            get { return soxe; }
+            set { soxe = value; }
+        }
+
+        private string tentaixe;
+        public string Tentaixe
+        {
+            get { return tentaixe; }
+            set { tentaixe = value; }
+        }
+
+        private int loaixe;
+        public int Loaixe
+        {
+            get { return loaixe; }
+            set { loaixe = value; }
+        }
         public Xe(int a = 0, string b = "", string c = "", int d = 0)
         {
             maxe = a;
@@ -54,46 +76,6 @@ namespace THDA_Group1_D13HT01
         public string Xuat2S(DSLoaiXe ds)
         {
             return String.Format("{0,-7} | {1,-15} | {2,-32} | {3,-14}\n", maxe, soxe, tentaixe, ds.getNameByID(loaixe));
-        }
-
-        public int getMaXe()
-        {
-            return maxe;
-        }
-
-        public string getTenTaiXe()
-        {
-            return tentaixe;
-        }
-
-        public string getSoXe()
-        {
-            return soxe;
-        }
-
-        public int getLoaiXe()
-        {
-            return loaixe;
-        }
-
-        public void setMaXe(int s = 0)
-        {
-            maxe = s;
-        }
-
-        public void setTenTaiXe(string s = "")
-        {
-            tentaixe = s;
-        }
-
-        public void setSoXe(string s = "")
-        {
-            soxe = s;
-        }
-
-        public void setLoaiXe(int s = 0)
-        {
-            loaixe = s;
         }
     }
 }

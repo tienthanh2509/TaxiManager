@@ -13,9 +13,20 @@ namespace THDA_Group1_D13HT01
     class DSXe
     {
         private Xe[] dsXE; // Mảng quản lý đối tượng xe
+        public Xe[] DsXE
+        {
+            get { return dsXE; }
+            set { dsXE = value; }
+        }
+
         private int n; // Tổng loại xe
+        public int N
+        {
+            get { return n; }
+            set { n = value; }
+        }
+
         private int maxsize = Properties.Settings.Default.MAX_SL_XE; // Giới hạn lưu trữ tối đa
-        private string datafile = Properties.Settings.Default.FILE_DANHSACHXE; // Địa chỉ file lưu dữ liệu
 
         public DSXe()
         {
@@ -23,21 +34,11 @@ namespace THDA_Group1_D13HT01
         }
 
         //------------------------------------------------------------------------------------------------------------------------------
-        public int getN()
-        {
-            return n;
-        }
 
         public int getmaxsize()
         {
             return maxsize;
         }
-
-        public Xe[] getDSXe()
-        {
-            return dsXE;
-        }
-
 
         public Xe getXEbyID(int id)
         {
@@ -47,7 +48,7 @@ namespace THDA_Group1_D13HT01
         public Xe getXEbyMX(int maxe)
         {
             for (int i = 0; i < n; i++)
-                if (dsXE[i].getMaXe() == maxe)
+                if (dsXE[i].Maxe == maxe)
                     return dsXE[i];
 
             return new Xe();
@@ -90,7 +91,7 @@ namespace THDA_Group1_D13HT01
         {
             try
             {
-                StreamReader myfile = File.OpenText(datafile);
+                StreamReader myfile = File.OpenText(Properties.Settings.Default.FILE_DANHSACHXE);
                 n = int.Parse(myfile.ReadLine());
 
                 Console.WriteLine("Số lượng xe: " + n);
@@ -118,7 +119,7 @@ namespace THDA_Group1_D13HT01
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("\n{0} không tồn tại", datafile);
+                Console.WriteLine("\n{0} không tồn tại", Properties.Settings.Default.FILE_DANHSACHXE);
             }
             catch (Exception ex)
             {
@@ -193,20 +194,20 @@ namespace THDA_Group1_D13HT01
 
             try
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(datafile);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(Properties.Settings.Default.FILE_DANHSACHXE);
                 file.WriteLine("{0}", n);
                 for (int i = 0; i < n; i++)
                 {
-                    file.WriteLine("{0}\t{1}\t{2}\t{3}", dsXE[i].getMaXe(), dsXE[i].getSoXe(), dsXE[i].getTenTaiXe(), dsXE[i].getLoaiXe());
+                    file.WriteLine("{0}\t{1}\t{2}\t{3}", dsXE[i].Maxe, dsXE[i].Soxe, dsXE[i].Tentaixe, dsXE[i].Loaixe);
                 }
                 file.Close();
 
-                Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(datafile));
+                Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHXE));
 
                 // Mở tệp với NotePad++
                 RunApps run = new RunApps();
                 //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                run.Argument = Path.GetFullPath(datafile);
+                run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHXE);
                 run.Run_With_NotePadPlusPlus();
             }
             catch (Exception ex)
@@ -218,18 +219,20 @@ namespace THDA_Group1_D13HT01
         public void Swap(ref Xe x1, ref Xe x2)
         {
             Xe temp = new Xe();
-            temp.setLoaiXe(x1.getLoaiXe());
-            temp.setMaXe(x1.getMaXe());
-            temp.setSoXe(x1.getSoXe());
-            temp.setTenTaiXe(x1.getTenTaiXe());
-            x1.setLoaiXe(x2.getLoaiXe());
-            x1.setMaXe(x2.getMaXe());
-            x1.setSoXe(x2.getSoXe());
-            x1.setTenTaiXe(x2.getTenTaiXe());
-            x2.setLoaiXe(temp.getLoaiXe());
-            x2.setMaXe(temp.getMaXe());
-            x2.setSoXe(temp.getSoXe());
-            x2.setTenTaiXe(temp.getTenTaiXe());
+            temp.Loaixe = x1.Loaixe;
+            temp.Maxe = x1.Maxe;
+            temp.Soxe = x1.Soxe;
+            temp.Tentaixe = x1.Tentaixe;
+
+            x1.Loaixe = x2.Loaixe;
+            x1.Maxe = x2.Maxe;
+            x1.Soxe = x2.Soxe;
+            x1.Tentaixe = x2.Tentaixe;
+
+            x2.Loaixe = temp.Loaixe;
+            x2.Maxe = temp.Maxe;
+            x2.Soxe = temp.Soxe;
+            x2.Tentaixe = temp.Tentaixe;
         }
 
         public void interchangesort()
@@ -237,11 +240,11 @@ namespace THDA_Group1_D13HT01
             for (int i = 0; i < n - 1; i++)
                 for (int j = i + 1; j < n; j++)
                 {
-                    int tempi = Convert.ToInt32(getXEbyID(i).getSoXe().Trim().Substring(0, 2));
-                    int tempj = Convert.ToInt32(getXEbyID(j).getSoXe().Trim().Substring(0, 2));
-                    // int tempmid = convert.toint32(getxebyid((i+j)/2).getsoxe().trim().substring(0, 2));
+                    int tempi = Convert.ToInt32(getXEbyID(i).Soxe.Trim().Substring(0, 2));
+                    int tempj = Convert.ToInt32(getXEbyID(j).Soxe.Trim().Substring(0, 2));
+                    // int tempmid = convert.toint32(getxebyid((i+j)/2).Soxe.trim().substring(0, 2));
                     if (tempi > tempj)
-                        Swap(ref getDSXe()[i], ref getDSXe()[j]);
+                        Swap(ref this.DsXE[i], ref this.DsXE[j]);
                 }
         }
     }

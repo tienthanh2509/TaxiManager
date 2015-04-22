@@ -9,7 +9,18 @@ namespace THDA_Group1_D13HT01
     class ChuyenDi
     {
         private int maxe;
+        public int Maxe
+        {
+            get { return maxe; }
+            set { maxe = value; }
+        }
+
         private float quangduong;
+        public float Quangduong
+        {
+            get { return quangduong; }
+            set { quangduong = value; }
+        }
 
         public ChuyenDi()
         {
@@ -21,26 +32,6 @@ namespace THDA_Group1_D13HT01
         {
             maxe = a;
             quangduong = b;
-        }
-
-        public int getMaXe()
-        {
-            return maxe;
-        }
-
-        public float getQuangDuong()
-        {
-            return quangduong;
-        }
-
-        public void setMaXe(int s)
-        {
-            maxe = s;
-        }
-
-        public void setQuangDuong(float km)
-        {
-            quangduong = km;
         }
 
         public static double ThanhTien(float km)

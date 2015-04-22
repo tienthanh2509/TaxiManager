@@ -9,28 +9,29 @@ namespace THDA_Group1_D13HT01
     class DSChuyenDi
     {
         private ChuyenDi[] dsCD; // Mảng quản lý đối tượng chuyến đi
+        public ChuyenDi[] DsCD
+        {
+            get { return dsCD; }
+            set { dsCD = value; }
+        }
+
         private int n; // Tổng loại chuyến đi
+        public int N
+        {
+            get { return n; }
+            set { n = value; }
+        }
+
         private int maxsize = Properties.Settings.Default.MAX_SL_CHUYENDI; // Giới hạn lưu trữ tối đa
-        private string datafile = Properties.Settings.Default.FILE_DANHSACHCHUYENDI; // Địa chỉ file lưu dữ liệu
 
         public DSChuyenDi()
         {
             dsCD = new ChuyenDi[maxsize];
         }
 
-        public int getN()
-        {
-            return n;
-        }
-
         public ChuyenDi getCDbyID(int id)
         {
             return dsCD[id];
-        }
-
-        public ChuyenDi[] getDSChuyenDi()
-        {
-            return dsCD;
         }
 
         public void Nhap()
@@ -68,7 +69,7 @@ namespace THDA_Group1_D13HT01
         {
             try
             {
-                StreamReader myfile = File.OpenText(datafile);
+                StreamReader myfile = File.OpenText(Properties.Settings.Default.FILE_DANHSACHCHUYENDI);
                 n = int.Parse(myfile.ReadLine());
 
                 Console.WriteLine("Số lượng chuyến đi: " + n);
@@ -90,11 +91,11 @@ namespace THDA_Group1_D13HT01
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("\n{0} không tồn tại", datafile);
+                Console.WriteLine("\n{0} không tồn tại", Properties.Settings.Default.FILE_DANHSACHCHUYENDI);
             }
             catch (IOException)
             {
-                Console.WriteLine("\n{0} đã tồn tại", datafile);
+                Console.WriteLine("\n{0} đã tồn tại", Properties.Settings.Default.FILE_DANHSACHCHUYENDI);
             }
             catch (Exception ex)
             {
@@ -168,15 +169,15 @@ namespace THDA_Group1_D13HT01
 
             try
             {
-                StreamWriter file = new StreamWriter(datafile);
+                StreamWriter file = new StreamWriter(Properties.Settings.Default.FILE_DANHSACHCHUYENDI);
                 file.WriteLine("{0}", n);
                 for (int i = 0; i < n; i++)
                 {
-                    file.WriteLine(String.Format("{0}\t{1}", dsCD[i].getMaXe(), dsCD[i].getQuangDuong()));
+                    file.WriteLine(String.Format("{0}\t{1}", dsCD[i].Maxe, dsCD[i].Quangduong));
                 }
                 file.Close();
 
-                Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(datafile));
+                Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHCHUYENDI));
 
                 // Mở tệp với NotePad++
                 RunApps run = new RunApps();
