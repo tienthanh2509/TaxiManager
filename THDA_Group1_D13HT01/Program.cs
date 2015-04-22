@@ -61,7 +61,7 @@ namespace THDA_Group1_D13HT01
                 dscd.Nhap_File();
                 Console.Clear();
             }
-            
+
             //------------------------------------------------------------------------------------
             int chon = -1;
             do
@@ -595,7 +595,7 @@ namespace THDA_Group1_D13HT01
                 else if (chon == 10)
                 {
                     Console.Clear();
-                    
+
                     StreamWriter file;
                     string s = "";
                     dsxe.interchangesort();
@@ -616,7 +616,7 @@ namespace THDA_Group1_D13HT01
                             Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
                             Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", "STT", "Mã Xe", "Tên tài xế", "Biển kiểm soát", "Loại xe");
                             Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
-                           
+
                             for (int i = 0; i < dsxe.getN(); i++)
                             {
                                 if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
@@ -665,15 +665,11 @@ namespace THDA_Group1_D13HT01
                  */
                 else if (chon == 11)
                 {
-                    
                     Console.Clear();
                     Console.WriteLine(">>> 11. Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất).");
 
-                   
-
                     Xe[,] mang_luu_temp = new Xe[loaixe.getN(), dsxe.getN()];
 
-                    int nloai = loaixe.getN();
                     int i, j;
                     //B1: Tìm tất cả các xe cho từng loại 
                     int q = 0, w = 0, e = 0;
@@ -683,9 +679,9 @@ namespace THDA_Group1_D13HT01
                         if (dsxe.getDSXe()[j].getLoaiXe() == 0)
                         {
                             mang_luu_temp[0, q] = new Xe();
-                           
+
                             mang_luu_temp[0, q] = dsxe.getDSXe()[j];
-                           
+
                             q++;
                         }
                         else if (dsxe.getDSXe()[j].getLoaiXe() == 1)
@@ -740,7 +736,7 @@ namespace THDA_Group1_D13HT01
                     }
                     // B3: Xuất danh sách
                     Console.WriteLine("{0, 12}  {1, 12} {2,12}", "Loại", "Biển số xe", "Tổng số km");
-                    
+
                     for (i = 0; i < q; i++)
                     {
                         if (maxt == tongkm[0, i])
