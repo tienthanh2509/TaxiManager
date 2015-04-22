@@ -94,5 +94,17 @@ namespace THDA_Group1_D13HT01.Properties {
                 return ((string)(this["FILE_LOGS"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AUTO_LOAD_DATA {
+            get {
+                return ((bool)(this["AUTO_LOAD_DATA"]));
+            }
+            set {
+                this["AUTO_LOAD_DATA"] = value;
+            }
+        }
     }
 }

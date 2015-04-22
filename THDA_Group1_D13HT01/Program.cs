@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 // -/-Hỗ trợ hiển thị tiếng Việt
 
 using System.IO;
-using System.Diagnostics;
 
 namespace THDA_Group1_D13HT01
 {
@@ -54,21 +53,47 @@ namespace THDA_Group1_D13HT01
             //dscd.Xuat();
 
             // Auto load \a ~ beep
-            Console.WriteLine(">>>\aDữ liệu được nạp tự động để phục vụ cho quá trình kiểm thử!");
-            loaixe.Nhap_File();
-            dsxe.Nhap_File();
-            dscd.Nhap_File();
-            Console.Clear();
-
+            if (Properties.Settings.Default.AUTO_LOAD_DATA)
+            {
+                Console.WriteLine(">>>\aDữ liệu được nạp tự động để phục vụ cho quá trình kiểm thử!");
+                loaixe.Nhap_File();
+                dsxe.Nhap_File();
+                dscd.Nhap_File();
+                Console.Clear();
+            }
+            
             //------------------------------------------------------------------------------------
             int chon = -1;
             do
             {
                 //----------- Thông báo chào mừng
-                Console.WriteLine("*******************************************************************");
-                Console.WriteLine("*              Chào mừng đến với chương trình quản lý xe taxi     *");
-                Console.WriteLine("*            được thực hiện bới nhóm 1, lớp D13HT01               *");
-                Console.WriteLine("*******************************************************************");
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+
+                for (int i = 0; i < Console.WindowWidth; i++)
+                    Console.Write("*");
+                //Console.WriteLine();
+                for (int i = 0; i < Console.WindowWidth; i++)
+                    Console.Write(" ");
+                for (int i = 0; i < Console.WindowWidth; i++)
+                    Console.Write(" ");
+                for (int i = 0; i < Console.WindowWidth; i++)
+                    Console.Write(" ");
+                for (int i = 0; i < Console.WindowWidth; i++)
+                    Console.Write(" ");
+                //Console.WriteLine();
+                for (int i = 0; i < Console.WindowWidth; i++)
+                    Console.Write("*");
+                Console.WriteLine();
+
+                Console.SetCursorPosition(Convert.ToInt32(Console.WindowWidth * 0.3), 1);
+
+                Console.Write("Chào mừng đến với chương trình quản lý xe taxi");
+
+                // 0,6
+                //Console.WriteLine("{0}, {1}", Console.CursorLeft, Console.CursorTop);
+                Console.SetCursorPosition(0, 6);
+
+                Console.BackgroundColor = ConsoleColor.Black;
 
                 //----------- Menu các chức năng
                 Console.WriteLine("1. Nhập vào danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe.");
@@ -82,16 +107,23 @@ namespace THDA_Group1_D13HT01
                 Console.WriteLine("9. Cho biết thông tin chuyến đi có số km lớn nhất (số xe, loại xe, tên tài xế, số km, thành tiền).");
                 Console.WriteLine("10. Sắp xếp danh sách tăng dần theo số xe.");
                 Console.WriteLine("11. Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất).");
-                Console.WriteLine("------------------------------------------------------------");
+
+                for (int i = 0; i < Console.WindowWidth / 2; i++)
+                    Console.Write("-");
+                Console.WriteLine();
 
                 //----------- Các chức năng khác
                 Console.WriteLine("30. Xuất dữ liệu ra màn hình/file (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).");
 
-                Console.WriteLine("\n>>> Thống kê sơ bộ [Đã bật nạp dữ liệu tự động từ file text]");
+                Console.WriteLine("\n>>> Thống kê ");
+                Console.WriteLine("999. Switch auto load data [{0}]", Properties.Settings.Default.AUTO_LOAD_DATA ? "ON" : "OFF");
                 Console.WriteLine("Tổng loại xe: {0}", loaixe.getN());
                 Console.WriteLine("Tổng số xe: {0}", dsxe.getN());
                 Console.WriteLine("Tổng số chuyến đi: {0}", dscd.getN());
-                Console.WriteLine("------------------------------------------------------------");
+
+                for (int i = 0; i < Console.WindowWidth / 2; i++)
+                    Console.Write("-");
+                Console.WriteLine();
 
                 Console.WriteLine("0. Thoát chương trình.");
 
@@ -811,15 +843,16 @@ namespace THDA_Group1_D13HT01
 
                                     file.Close();
                                     Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
-                                    Process notePad = new Process();
-                                    //notePad.StartInfo.FileName = "notepad.exe";
-                                    notePad.StartInfo.FileName = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                                    //notePad.StartInfo.Arguments = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                                    notePad.Start();
+
+                                    // Mở tệp với NotePad++
+                                    RunApps run = new RunApps();
+                                    //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                                    run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                                    run.Run_With_NotePadPlusPlus();
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine("Có lỗi không rõ đã xảy ra, chi tiết: " + ex.Message);
+                                    Console.WriteLine("Có lỗi không rõ đã xảy ra, chi tiết: " + ex.ToString());
                                 }
                             }
 
@@ -828,6 +861,12 @@ namespace THDA_Group1_D13HT01
                             Console.Clear();
                         }
                     } while (s != "e");
+                }
+                else if (chon == 999)
+                {
+                    Properties.Settings.Default.AUTO_LOAD_DATA = !Properties.Settings.Default.AUTO_LOAD_DATA;
+                    Properties.Settings.Default.Save();
+                    Console.WriteLine("Tự động nạp dữ liệu đã {0}", Properties.Settings.Default.AUTO_LOAD_DATA ? "Bật" : "Tắt");
                 }
 
                 Console.Write("Nhấn phím bất kỳ để tiếp tục...");

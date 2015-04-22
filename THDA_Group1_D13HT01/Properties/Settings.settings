@@ -26,5 +26,8 @@
     <Setting Name="FILE_LOGS" Type="System.String" Scope="Application">
       <Value Profile="(Default)">logs.txt</Value>
     </Setting>
+    <Setting Name="AUTO_LOAD_DATA" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
