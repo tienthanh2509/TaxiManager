@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,23 +34,8 @@ namespace THDA_Group1_D13HT01
 
             // Khởi tạo Class
             DSLoaiXe loaixe = new DSLoaiXe();
-            //loaixe.Nhap();
-            //loaixe.Nhap_File();
-            //loaixe.Xuat();
-            //loaixe.Xuat_File();
-            //Xe xe = new Xe();
-            //xe.Nhap();
-            //xe.Xuat();
             DSXe dsxe = new DSXe();
-            //dsxe.Nhap();
-            //dsxe.Nhap_File();
-            //dsxe.Xuat();
-            //dsxe.Xuat2(LoaiXe);
-            //dsxe.Xuat_File();
-
             DSChuyenDi dscd = new DSChuyenDi();
-            //dscd.Nhap_File();
-            //dscd.Xuat();
 
             // Auto load \a ~ beep
             if (Properties.Settings.Default.AUTO_LOAD_DATA)
@@ -62,16 +47,15 @@ namespace THDA_Group1_D13HT01
                 Console.Clear();
             }
 
-            //------------------------------------------------------------------------------------
             int chon = -1;
             do
             {
+                Console.Clear();
                 //----------- Thông báo chào mừng
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
 
                 for (int i = 0; i < Console.WindowWidth; i++)
                     Console.Write("*");
-                //Console.WriteLine();
                 for (int i = 0; i < Console.WindowWidth; i++)
                     Console.Write(" ");
                 for (int i = 0; i < Console.WindowWidth; i++)
@@ -80,7 +64,6 @@ namespace THDA_Group1_D13HT01
                     Console.Write(" ");
                 for (int i = 0; i < Console.WindowWidth; i++)
                     Console.Write(" ");
-                //Console.WriteLine();
                 for (int i = 0; i < Console.WindowWidth; i++)
                     Console.Write("*");
                 Console.WriteLine();
@@ -89,8 +72,6 @@ namespace THDA_Group1_D13HT01
 
                 Console.Write("Chào mừng đến với chương trình quản lý xe taxi");
 
-                // 0,6
-                //Console.WriteLine("{0}, {1}", Console.CursorLeft, Console.CursorTop);
                 Console.SetCursorPosition(0, 6);
 
                 Console.BackgroundColor = ConsoleColor.Black;
@@ -143,31 +124,26 @@ namespace THDA_Group1_D13HT01
 
                 // Xử lý các chức năng
 
-                // @TODO thiếu việc kiểm tra dữ liệu, phải có dữ liệu mới được tiến hành các chức năng nào đó
-                // Chia menu ra 2 phần, 1 phần là khi chưa nạp dữ liệu, phần 2 là khi đã có dữ liệu mới cho phép thao tác
-
                 /**
                  * Nhập liệu vào chương trình
                  */
                 if (chon == 1)
                 {
-                    Console.Clear();
-                    Console.WriteLine(">>> 1. Nhập vào danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe.");
-
                     string s = "";
 
                     do
                     {
+                        Console.Clear();
+                        Console.WriteLine(">>> 1. Nhập vào danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe.");
                         Console.WriteLine("a. Nhập vào danh sách các chiếc xe.");
                         Console.WriteLine("b. Nhập vào danh sách các danh sách các chuyến đi.");
                         Console.WriteLine("c. Nhập vào danh sách phân loại xe.");
 
                         Console.WriteLine("---------\naf. Hàng loạt từ file.");
                         Console.WriteLine("t. Quay lại");
-                        //-----------
                         Console.Write("Bạn chọn: ");
                         s = Console.ReadLine().ToLower();
-                        //-----------
+
                         if (s == "a")
                         {
                             string ss = "";
@@ -176,20 +152,14 @@ namespace THDA_Group1_D13HT01
                                 Console.WriteLine(">>> a. Nhập vào danh sách các chiếc xe.");
                                 Console.WriteLine("f. Nhập mới từ file");
                                 Console.WriteLine("k. Nhập mới từ bàn phím.");
-                                Console.WriteLine("---------");
                                 Console.WriteLine("t. Quay lại");
-                                //-----------
                                 Console.Write("Bạn chọn: ");
                                 ss = Console.ReadLine().ToLower();
 
                                 if (ss == "f")
-                                {
                                     dsxe.Nhap_File();
-                                }
                                 else if (ss == "k")
-                                {
                                     dsxe.Nhap();
-                                }
                             } while (ss != "t");
                             Console.WriteLine("---------");
                         }
@@ -203,18 +173,13 @@ namespace THDA_Group1_D13HT01
                                 Console.WriteLine("k. Nhập mới từ bàn phím.");
                                 Console.WriteLine("---------");
                                 Console.WriteLine("t. Quay lại");
-                                //-----------
                                 Console.Write("Bạn chọn: ");
                                 ss = Console.ReadLine().ToLower();
 
                                 if (ss == "f")
-                                {
                                     dscd.Nhap_File();
-                                }
                                 else if (ss == "k")
-                                {
                                     dscd.Nhap();
-                                }
                             } while (ss != "t");
                             Console.WriteLine("---------");
                         }
@@ -228,18 +193,13 @@ namespace THDA_Group1_D13HT01
                                 Console.WriteLine("k. Nhập mới từ bàn phím.");
                                 Console.WriteLine("---------");
                                 Console.WriteLine("t. Quay lại");
-                                //-----------
                                 Console.Write("Bạn chọn: ");
                                 ss = Console.ReadLine().ToLower();
 
                                 if (ss == "f")
-                                {
                                     loaixe.Nhap_File();
-                                }
                                 else if (ss == "k")
-                                {
                                     loaixe.Nhap();
-                                }
                             } while (ss != "t");
                             Console.WriteLine("---------");
                         }
@@ -264,22 +224,38 @@ namespace THDA_Group1_D13HT01
                         Console.Clear();
                         Console.WriteLine(">>> 2. Tính Thành tiền cho mỗi chuyến đi.");
 
-                        //Console.WriteLine("f. Xuất ra file dữ liệu.");
-                        Console.WriteLine("fr. Xuất ra file báo cáo.");
-                        Console.WriteLine("m. Xuất ra màn hình.");
-                        Console.WriteLine("---------");
-                        Console.WriteLine("t. Quay lại");
-                        //-----------
-                        Console.Write("Bạn chọn: ");
-                        s = Console.ReadLine().ToLower();
+                        try
+                        {
+                            if (dsxe.N < 1)
+                                throw new System.ArgumentException("Chưa có dữ liệu các xe, không thể tiếp tục!");
+                            else if (dscd.N < 1)
+                                throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
+                            else if (loaixe.N < 1)
+                                throw new System.ArgumentException("Chưa có dữ liệu các loại xe, không thể tiếp tục!");
 
-                        if (s == "fr")
-                        {
-                            dscd.Xuat_File_BaoCao();
+                            Console.WriteLine("fr. Xuất ra file báo cáo.");
+                            Console.WriteLine("m. Xuất ra màn hình.");
+                            Console.WriteLine("---------");
+                            Console.WriteLine("t. Quay lại");
+                            Console.Write("Bạn chọn: ");
+                            s = Console.ReadLine().ToLower();
+
+                            if (s == "fr")
+                            {
+                                dscd.Xuat_File_BaoCao();
+
+                                // Auto load notepad++
+                                RunApps run = new RunApps();
+                                //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                                run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                                run.Run_With_NotePadPlusPlus();
+                            }
+                            else if (s == "m")
+                                dscd.Xuat();
                         }
-                        else if (s == "m")
+                        catch (Exception ex)
                         {
-                            dscd.Xuat();
+                            System.Console.WriteLine(ex.Message);
                         }
                     } while (s == "t");
                 }
@@ -293,6 +269,13 @@ namespace THDA_Group1_D13HT01
                     string s = "";
                     try
                     {
+                        if (dsxe.N < 1)
+                            throw new System.ArgumentException("Chưa có dữ liệu các xe, không thể tiếp tục!");
+                        else if (dscd.N < 1)
+                            throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
+                        else if (loaixe.N < 1)
+                            throw new System.ArgumentException("Chưa có dữ liệu các loại xe, không thể tiếp tục!");
+                        
                         int i;
                         Console.Write("Nhập tên tài xế: ");
                         s = Console.ReadLine();
@@ -353,7 +336,6 @@ namespace THDA_Group1_D13HT01
                 */
                 else if (chon == 4)
                 {
-                    Console.Clear();
                     StreamWriter file;
                     string s = "";
                     do
@@ -438,7 +420,6 @@ namespace THDA_Group1_D13HT01
 
                     int found = 0;
                     for (int i = 0; i < dsxe.N; i++)
-                    {
                         if (soxe == dsxe.DsXE[i].Soxe)
                         {
                             Console.WriteLine("{0,7}  {1,20}  {2,12}  {3,5}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe");
@@ -446,7 +427,6 @@ namespace THDA_Group1_D13HT01
                             found = 1;
                             break;
                         }
-                    }
 
                     if (found == 0)
                         Console.WriteLine("Không tìm thấy xe có biển số '{0}' !!!", soxe);
@@ -458,12 +438,6 @@ namespace THDA_Group1_D13HT01
                 {
                     Console.Clear();
                     Console.WriteLine(">>> 6. Đếm số lượng xe theo từng loại.");
-
-                    // Nếu chưa phân loại xe thì báo số xe chưa phân loại
-                    //if (loaixe.getN() == 0)
-                    //{
-                    //    Console.WriteLine("Hiện chưa có phân loại xe rõ ràng!!!\nSố xe chưa phân loại là: ", dsxe.N);
-                    //}
 
                     int[] soluong = new int[100];
                     int nloai = loaixe.N;
@@ -489,9 +463,7 @@ namespace THDA_Group1_D13HT01
                     Console.WriteLine("{0, 12}  {1, 12}", "Mã", "Loại");
                     Console.WriteLine("{0, 12}  {1, 12}", "???", unknown);
                     for (int i = 0; i < nloai; i++)
-                    {
                         Console.WriteLine("{0, 12}  {1, 12}", loaixe.getNameByID(i), soluong[i]);
-                    }
                 }
                 /**
                  * Cho biết xe nào có số km đi nhiều nhất
@@ -515,22 +487,15 @@ namespace THDA_Group1_D13HT01
                         { tkm[i] = 0; bks[i] = dscd.DsCD[i].Maxe.ToString(); }
 
                         for (int i = 0; i < dsxe.N; i++)
-                        {
                             for (int j = 0; j < dscd.N; j++)
-                            {
                                 if (bks[i] == dscd.DsCD[j].Maxe.ToString())
                                     tkm[i] += dscd.DsCD[j].Quangduong;
-                            }
-
-
-                        }
 
                         int max = 0;
                         for (int i = 1; i < dsxe.N; i++)
                             if (tkm[i] > tkm[max])
                                 max = i;
 
-                        //Console.WriteLine("{0,12}   {1,12}", bks[max], tkm[max]);
                         Console.WriteLine("{0,7}  {1,20}  {2,12}  {3,5}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe");
                         dsxe.getXEbyID(max).Xuat2(loaixe);
                     }
@@ -715,11 +680,8 @@ namespace THDA_Group1_D13HT01
                     {
                         tongkm[1, i] = 0;
                         for (j = 0; j < dscd.N; j++)
-                        {
                             if (dscd.DsCD[j].Maxe == mang_luu_temp[1, i].Maxe)
                                 tongkm[1, i] += dscd.DsCD[j].Quangduong;
-
-                        }
                         if (maxv < tongkm[0, i]) maxv = tongkm[1, i];
                     }
 
@@ -727,31 +689,24 @@ namespace THDA_Group1_D13HT01
                     {
                         tongkm[2, i] = 0;
                         for (j = 0; j < dscd.N; j++)
-                        {
                             if (dscd.DsCD[j].Maxe == mang_luu_temp[2, i].Maxe)
                                 tongkm[2, i] += dscd.DsCD[j].Quangduong;
-
-                        }
                         if (maxhd < tongkm[0, i]) maxhd = tongkm[2, i];
                     }
                     // B3: Xuất danh sách
                     Console.WriteLine("{0, 12}  {1, 12} {2,12}", "Loại", "Biển số xe", "Tổng số km");
 
                     for (i = 0; i < q; i++)
-                    {
                         if (maxt == tongkm[0, i])
                             Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Thường", mang_luu_temp[0, i].Soxe, String.Format("{0:0,#}", tongkm[0, i]));
-                    }
+                    
                     for (i = 0; i < w; i++)
-                    {
                         if (maxv == tongkm[1, i])
                             Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Vip", mang_luu_temp[1, i].Soxe, String.Format("{0:0,#}", tongkm[1, i]));
-                    }
+                    
                     for (i = 0; i < e; i++)
-                    {
                         if (maxhd == tongkm[2, i])
                             Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Hợp Đồng", mang_luu_temp[2, i].Soxe, String.Format("{0:0,#}", tongkm[2, i]));
-                    }
                     Console.ReadKey();
                 }
                 /**
