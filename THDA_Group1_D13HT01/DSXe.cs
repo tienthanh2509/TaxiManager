@@ -214,6 +214,7 @@ namespace THDA_Group1_D13HT01
                 Console.WriteLine("Có lỗi không rõ đã xảy ra, chi tiết: " + ex.Message);
             }
         }
+
         public void Swap(ref Xe x1, ref Xe x2)
         {
             Xe temp = new Xe();
@@ -230,6 +231,7 @@ namespace THDA_Group1_D13HT01
             x2.setSoXe(temp.getSoXe());
             x2.setTenTaiXe(temp.getTenTaiXe());
         }
+
         public void interchangesort()
         {
             for (int i = 0; i < n - 1; i++)
