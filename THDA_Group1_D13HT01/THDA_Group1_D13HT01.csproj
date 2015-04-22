@@ -170,9 +170,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="certificate.pfx" />
-    <None Include="notepad++\change.log">
+    <Content Include="notepad++\change.log">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
