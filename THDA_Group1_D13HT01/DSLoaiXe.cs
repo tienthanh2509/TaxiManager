@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Configuration;
-using System.Diagnostics;
 
 /**
  * Class Quản lý Các Loại Xe

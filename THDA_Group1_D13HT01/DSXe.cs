@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Diagnostics;
 
 namespace THDA_Group1_D13HT01
 {
@@ -203,11 +202,12 @@ namespace THDA_Group1_D13HT01
                 file.Close();
 
                 Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(datafile));
-                Process notePad = new Process();
-                //notePad.StartInfo.FileName = "notepad.exe";
-                notePad.StartInfo.FileName = Path.GetFullPath(datafile);
-                //notePad.StartInfo.Arguments = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                notePad.Start();
+
+                // Mở tệp với NotePad++
+                RunApps run = new RunApps();
+                //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                run.Argument = Path.GetFullPath(datafile);
+                run.Run_With_NotePadPlusPlus();
             }
             catch (Exception ex)
             {
