@@ -820,8 +820,11 @@ namespace THDA_Group1_D13HT01
                     Console.WriteLine("Tự động nạp dữ liệu đã {0}", Properties.Settings.Default.AUTO_LOAD_DATA ? "Bật" : "Tắt");
                 }
 
-                Console.Write("Nhấn phím bất kỳ để tiếp tục...");
-                Console.ReadKey();
+                if (chon != 0)
+                {
+                    Console.Write("Nhấn phím bất kỳ để tiếp tục...");
+                    Console.ReadKey();
+                }
             } while (chon != 0);
             //------------------------------------------------------------------------------------
         }
