@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 // Hỗ trợ hiển thị tiếng Việt
 using System.Runtime.InteropServices;
@@ -18,6 +19,36 @@ namespace THDA_Group1_D13HT01
         static extern bool SetConsoleOutputCP(uint wCodePageID);
         // -/-Hỗ trợ hiển thị tiếng Việt
 
+        static void ConsoleDraw(IEnumerable<string> lines, int x, int y)
+        {
+            if (x > Console.WindowWidth) return;
+            if (y > Console.WindowHeight) return;
+
+            var trimLeft = x < 0 ? -x : 0;
+            int index = y;
+
+            x = x < 0 ? 0 : x;
+            y = y < 0 ? 0 : y;
+
+            var linesToPrint =
+                from line in lines
+                let currentIndex = index++
+                where currentIndex > 0 && currentIndex < Console.WindowHeight
+                select new
+                {
+                    Text = new String(line.Skip(trimLeft).Take(Math.Min(Console.WindowWidth - x, line.Length - trimLeft)).ToArray()),
+                    X = x,
+                    Y = y++
+                };
+
+            Console.Clear();
+            foreach (var line in linesToPrint)
+            {
+                Console.SetCursorPosition(line.X, line.Y);
+                Console.Write(line.Text);
+            }
+        }
+
         static void Main(string[] args)
         {
             // Kích thước của sổ Console
@@ -31,6 +62,27 @@ namespace THDA_Group1_D13HT01
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
             // -/-Hỗ trợ hiển thị tiếng Việt
+
+            // Hiệu ứng khi khởi động
+            Console.CursorVisible = false;
+
+            var arr = new[]
+            {
+                @"   ___      _      ____   _  _    _____     __      _    ",
+                @"  |   \    / |    |__ /  | || |  |_   _|   /  \    / |   ",
+                @"  | |) |   | |     |_ \  | __ |    | |    | () |   | |   ",
+                @"  |___/   _|_|_   |___/  |_||_|   _|_|_   _\__/   _|_|_  ",
+            };
+
+            var maxLength = arr.Aggregate(0, (max, line) => Math.Max(max, line.Length));
+            var x = Console.BufferWidth / 2 - maxLength / 2;
+            for (int y = 0; y < Console.WindowHeight*0.4; y++)
+            {
+                ConsoleDraw(arr, x, y);
+                Thread.Sleep(60);
+            }
+            Console.Clear();
+            Console.CursorVisible = true;
 
             // Khởi tạo Class
             DSLoaiXe loaixe = new DSLoaiXe();
