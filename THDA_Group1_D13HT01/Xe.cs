@@ -47,9 +47,9 @@ namespace THDA_Group1_D13HT01
             try
             {
 
-                Console.Write("Mã tài xế: "); maxe = Console.Read();
+                Console.Write("Mã tài xế: "); maxe = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Tên tài xế: "); tentaixe = Console.ReadLine();
-                Console.Write("Loại xe: "); loaixe = Console.Read();
+                Console.Write("Loại xe: "); loaixe = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Số xe: "); soxe = Console.ReadLine();
             }
             catch (FormatException)

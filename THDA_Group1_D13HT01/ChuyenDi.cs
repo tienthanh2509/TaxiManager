@@ -51,8 +51,8 @@ namespace THDA_Group1_D13HT01
         {
             try
             {
-                Console.Write("Số xe: ");
-                maxe = Console.Read();
+                Console.Write("Mã xe: ");
+                maxe = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Quãng Đường: "); quangduong = float.Parse(Console.ReadLine());
             }
             catch (FormatException)

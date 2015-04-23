@@ -275,7 +275,7 @@ namespace THDA_Group1_D13HT01
                             throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
                         else if (loaixe.N < 1)
                             throw new System.ArgumentException("Chưa có dữ liệu các loại xe, không thể tiếp tục!");
-                        
+
                         int i;
                         Console.Write("Nhập tên tài xế: ");
                         s = Console.ReadLine();
@@ -420,7 +420,7 @@ namespace THDA_Group1_D13HT01
 
                     int found = 0;
                     for (int i = 0; i < dsxe.N; i++)
-                        if (soxe == dsxe.DsXE[i].Soxe)
+                        if (soxe == dsxe.DsXE[i].Soxe.ToLower())
                         {
                             Console.WriteLine("{0,7}  {1,20}  {2,12}  {3,5}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe");
                             dsxe.DsXE[i].Xuat2(loaixe);
@@ -699,15 +699,14 @@ namespace THDA_Group1_D13HT01
                     for (i = 0; i < q; i++)
                         if (maxt == tongkm[0, i])
                             Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Thường", mang_luu_temp[0, i].Soxe, String.Format("{0:0,#}", tongkm[0, i]));
-                    
+
                     for (i = 0; i < w; i++)
                         if (maxv == tongkm[1, i])
                             Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Vip", mang_luu_temp[1, i].Soxe, String.Format("{0:0,#}", tongkm[1, i]));
-                    
+
                     for (i = 0; i < e; i++)
                         if (maxhd == tongkm[2, i])
                             Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Hợp Đồng", mang_luu_temp[2, i].Soxe, String.Format("{0:0,#}", tongkm[2, i]));
-                    Console.ReadKey();
                 }
                 /**
                  * Xuất dữ liệu ra màn hình (danh sách các chiếc xe, danh sách các chuyến đi, phân loại xe).
