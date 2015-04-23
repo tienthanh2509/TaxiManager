@@ -30,7 +30,7 @@
     <ProductName>Taxi Management</ProductName>
     <PublisherName>Pham Tien Thanh</PublisherName>
     <ApplicationRevision>19</ApplicationRevision>
-    <ApplicationVersion>1.0.1.19</ApplicationVersion>
+    <ApplicationVersion>1.1.0.19</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

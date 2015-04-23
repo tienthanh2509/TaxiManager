@@ -130,7 +130,7 @@ namespace THDA_Group1_D13HT01
                 Console.Write("Nhóm 1 - D13HT01");
 
                 Console.SetCursorPosition(Convert.ToInt32(Console.WindowWidth * 0.85), 3);
-                Console.Write("Phiên bản: 1.1.0.17");
+                Console.Write("Phiên bản: 1.1.0.19");
 
                 Console.SetCursorPosition(Convert.ToInt32(Console.WindowWidth * 0.85), 4);
                 Console.Write(DateTime.Now);
