@@ -474,7 +474,7 @@ namespace THDA_Group1_D13HT01
                             for (int i = 0; i < dsxe.N; i++)
                             {
                                 if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
-                                Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", i + 1, dsxe.getXEbyID(i).Maxe, dsxe.getXEbyID(i).Tentaixe, dsxe.getXEbyID(i).Soxe, loaixe.getNameByID(dsxe.getXEbyID(i).Loaixe), string.Format("{0:0,0}", tong_qd[i]), string.Format("{0:0,0}", tongtien[i]));
+                                Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", i + 1, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Tentaixe, dsxe.DsXE[i].Soxe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), string.Format("{0:0,0}", tong_qd[i]), string.Format("{0:0,0}", tongtien[i]));
                                 Console.BackgroundColor = ConsoleColor.Black;
                             }
 
@@ -491,7 +491,7 @@ namespace THDA_Group1_D13HT01
                                 file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", "STT", "Mã Xe", "Tên tài xế", "Biển kiểm soát", "Loại xe", "Tổng QĐ", "Tổng tiền");
                                 file.WriteLine("________________________________________________________________________________________________________________");
                                 for (int i = 0; i < dsxe.N; i++)
-                                    file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", i + 1, dsxe.getXEbyID(i).Maxe, dsxe.getXEbyID(i).Tentaixe, dsxe.getXEbyID(i).Soxe, loaixe.getNameByID(dsxe.getXEbyID(i).Loaixe), string.Format("{0:0,0}", tong_qd[i]), string.Format("{0:0,0}", tongtien[i]));
+                                    file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}  {5,10}  {6,16}", i + 1, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Tentaixe, dsxe.DsXE[i].Soxe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), string.Format("{0:0,0}", tong_qd[i]), string.Format("{0:0,0}", tongtien[i]));
 
                                 file.WriteLine("\nDanh sách này có {0} xe.\n", dsxe.N);
 
@@ -605,14 +605,14 @@ namespace THDA_Group1_D13HT01
                         else if (dscd.N < 1)
                             throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
 
+                        // Khởi tạo giá trị ban đầu
                         float[] tkm = new float[dsxe.N];
-                        string[] bks = new string[dsxe.N];
                         for (int i = 0; i < dsxe.N; i++)
-                        { tkm[i] = 0; bks[i] = dscd.DsCD[i].Maxe.ToString(); }
+                            tkm[i] = 0;
 
                         for (int i = 0; i < dsxe.N; i++)
                             for (int j = 0; j < dscd.N; j++)
-                                if (bks[i] == dscd.DsCD[j].Maxe.ToString())
+                                if (dsxe.DsXE[i].Maxe == dscd.DsCD[j].Maxe)
                                     tkm[i] += dscd.DsCD[j].Quangduong;
 
                         int max = 0;
@@ -627,12 +627,12 @@ namespace THDA_Group1_D13HT01
                         int[] list = new int[dsxe.N];
                         int count = 0;
 
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < dsxe.N; i++)
                             if (tkm[i] == tkm[max])
                                 list[count++] = i;
 
-                        for (int i = 0; i <= count; i++)
-                            Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[max]));
+                        for (int i = 0; i < count; i++)
+                            Console.WriteLine("{0}  {1, 13}", dsxe.DsXE[list[i]].Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[list[i]]));
                     }
                     catch (Exception ex)
                     {
@@ -768,7 +768,7 @@ namespace THDA_Group1_D13HT01
                             for (int i = 0; i < dsxe.N; i++)
                             {
                                 if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
-                                Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", i + 1, dsxe.getXEbyID(i).Maxe, dsxe.getXEbyID(i).Tentaixe, dsxe.getXEbyID(i).Soxe, loaixe.getNameByID(dsxe.getXEbyID(i).Loaixe));
+                                Console.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", i + 1, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Tentaixe, dsxe.DsXE[i].Soxe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe));
                                 Console.BackgroundColor = ConsoleColor.Black;
                             }
 
@@ -785,7 +785,7 @@ namespace THDA_Group1_D13HT01
                                 file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", "STT", "Mã Xe", "Tên tài xế", "Biển kiểm soát", "Loại xe");
                                 file.WriteLine("________________________________________________________________________________________________________________");
                                 for (int i = 0; i < dsxe.N; i++)
-                                    file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", i + 1, dsxe.getXEbyID(i).Maxe, dsxe.getXEbyID(i).Tentaixe, dsxe.getXEbyID(i).Soxe, loaixe.getNameByID(dsxe.getXEbyID(i).Loaixe));
+                                    file.WriteLine("{0,-4} | {1,-7}  {2,-32}  {3,-15}  {4,-15}", i + 1, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Tentaixe, dsxe.DsXE[i].Soxe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe));
 
                                 file.WriteLine("\nDanh sách này có {0} xe.\n", dsxe.N);
 
@@ -823,13 +823,13 @@ namespace THDA_Group1_D13HT01
                         throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
 
                     float[] tkm = new float[dsxe.N];
-                    string[] bks = new string[dsxe.N];
+                    int[] bks = new int[dsxe.N];
                     for (int i = 0; i < dsxe.N; i++)
-                    { tkm[i] = 0; bks[i] = dscd.DsCD[i].Maxe.ToString(); }
+                    { tkm[i] = 0; bks[i] = dscd.DsCD[i].Maxe; }
 
                     for (int i = 0; i < dsxe.N; i++)
                         for (int j = 0; j < dscd.N; j++)
-                            if (bks[i] == dscd.DsCD[j].Maxe.ToString())
+                            if (bks[i] == dscd.DsCD[j].Maxe)
                                 tkm[i] += dscd.DsCD[j].Quangduong;
 
 
