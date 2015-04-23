@@ -40,11 +40,6 @@ namespace THDA_Group1_D13HT01
             return maxsize;
         }
 
-        public Xe getXEbyID(int id)
-        {
-            return dsXE[id];
-        }
-
         public Xe getXEbyMX(int maxe)
         {
             for (int i = 0; i < n; i++)
@@ -243,8 +238,8 @@ namespace THDA_Group1_D13HT01
             for (int i = 0; i < n - 1; i++)
                 for (int j = i + 1; j < n; j++)
                 {
-                    int tempi = Convert.ToInt32(getXEbyID(i).Soxe.Trim().Substring(0, 2));
-                    int tempj = Convert.ToInt32(getXEbyID(j).Soxe.Trim().Substring(0, 2));
+                    int tempi = Convert.ToInt32(this.DsXE[i].Soxe.Trim().Substring(0, 2));
+                    int tempj = Convert.ToInt32(this.DsXE[j].Soxe.Trim().Substring(0, 2));
                     // int tempmid = convert.toint32(getxebyid((i+j)/2).Soxe.trim().substring(0, 2));
                     if (tempi > tempj)
                         Swap(ref this.DsXE[i], ref this.DsXE[j]);

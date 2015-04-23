@@ -822,42 +822,37 @@ namespace THDA_Group1_D13HT01
                     else if (dscd.N < 1)
                         throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
 
+                    // Khởi tạo giá trị ban đầu
                     float[] tkm = new float[dsxe.N];
-                    int[] bks = new int[dsxe.N];
                     for (int i = 0; i < dsxe.N; i++)
-                    { tkm[i] = 0; bks[i] = dscd.DsCD[i].Maxe; }
+                        tkm[i] = 0;
 
                     for (int i = 0; i < dsxe.N; i++)
                         for (int j = 0; j < dscd.N; j++)
-                            if (bks[i] == dscd.DsCD[j].Maxe)
+                            if (dsxe.DsXE[i].Maxe == dscd.DsCD[j].Maxe)
                                 tkm[i] += dscd.DsCD[j].Quangduong;
 
-
                     Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("{0,-7} | {1,-15} | {2,-32} | {3,-12} | {4, 15}", "Mã TX", "Biển kiểm soát", "Tên tài xế", "Loại xe", "Tổng QD");
+                    Console.WriteLine("{0,-7} | {1,-15} | {2,-32} | {3,-14} | {4}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe", "Tổng QD");
                     Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
 
                     for (int mm = 0; mm < loaixe.N; mm++)
                     {
-                        // Tìm xe có loại xe khớp với loại xe đang duyệt và lớn nhất theo loại xe đó
                         int max = 0;
                         for (int i = 0; i < dsxe.N; i++)
                             if (tkm[i] > tkm[max] && dsxe.DsXE[i].Loaixe == mm)
                                 max = i;
 
-                        // Tạo danh sách chứa các đồng hạng
                         int[] list = new int[dsxe.N];
                         int count = 0;
 
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < dsxe.N; i++)
                             if (tkm[i] == tkm[max] && dsxe.DsXE[i].Loaixe == mm)
                                 list[count++] = i;
 
-                        // Xuất kết quả
-                        if (mm % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
-                        for (int i = 0; i <= count; i++)
-                            Console.WriteLine("{0, -75} | {1, 15}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[max]));
-                        Console.BackgroundColor = ConsoleColor.Black;
+                        for (int i = 0; i < count; i++)
+                            Console.WriteLine("{0}  {1, 13}", dsxe.DsXE[list[i]].Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[list[i]]));
+
                     }
                 }
                 /**
