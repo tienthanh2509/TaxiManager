@@ -632,7 +632,7 @@ namespace THDA_Group1_D13HT01
                                 list[count++] = i;
 
                         for (int i = 0; i <= count; i++)
-                            Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0}", tkm[max]));
+                            Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[max]));
 
                         //for (int i = 0; i <= dsxe.N; i++)
                         //    Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(i).Xuat2S(loaixe).Trim(), String.Format("{0:0,0}", tkm[i]));
