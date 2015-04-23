@@ -904,6 +904,7 @@ namespace THDA_Group1_D13HT01
                     Console.WriteLine("Tự động nạp dữ liệu đã {0}", Properties.Settings.Default.AUTO_LOAD_DATA ? "Bật" : "Tắt");
                 }
 
+                // Nếu chon = 0 thì không hiển thị thông báo tạm dừng chương trình
                 if (chon != 0)
                 {
                     Console.Write("Nhấn phím bất kỳ để tiếp tục...");
@@ -911,6 +912,7 @@ namespace THDA_Group1_D13HT01
                 }
             } while (chon != 0);
 
+            // Tự động lưu lại dữ liệu vào file
             if (Properties.Settings.Default.AUTO_LOAD_DATA)
             {
                 Console.Write("Đang lưu dữ liệu chờ tí...");

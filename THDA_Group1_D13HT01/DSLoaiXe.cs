@@ -175,7 +175,7 @@ namespace THDA_Group1_D13HT01
                     // Mở tệp với NotePad++
                     RunApps run = new RunApps();
                     //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                    run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHXE);
+                    run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHLOAIXE);
                     run.Run_With_NotePadPlusPlus();
                 }
             }
