@@ -113,9 +113,27 @@ namespace THDA_Group1_D13HT01
                 return;
             }
 
+            Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("{0,12}  {1,12}  {2,17}  {3,10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
+            Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
             for (int i = 0; i < n; i++)
+            {
+                if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("{0,12}  {1}", i + 1, dsCD[i].XuatS());
+                Console.BackgroundColor = ConsoleColor.Black;
+
+                if (i % Properties.Settings.Default.PAGINATION_PER_PAGE == 0 && i != 0)
+                {
+                    Console.Write("Trang {0}/{1} - Ấn phím bất kỳ để tiếp tục, Ấn Esc để thoát...", i / Properties.Settings.Default.PAGINATION_PER_PAGE, n / Properties.Settings.Default.PAGINATION_PER_PAGE);
+                    ConsoleKeyInfo ck =  Console.ReadKey();
+
+                    if (ck.Key == ConsoleKey.Escape)
+                    {
+                        Console.WriteLine("Đã ngắt tiến trình!!!");
+                        break;
+                    }
+                }
+            }
             Console.WriteLine("\n---------------------------\nDanh sách này có {0} chuyến đi.", n);
         }
 

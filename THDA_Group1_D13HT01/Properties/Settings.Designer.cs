@@ -106,5 +106,17 @@ namespace THDA_Group1_D13HT01.Properties {
                 this["AUTO_LOAD_DATA"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        public int PAGINATION_PER_PAGE {
+            get {
+                return ((int)(this["PAGINATION_PER_PAGE"]));
+            }
+            set {
+                this["PAGINATION_PER_PAGE"] = value;
+            }
+        }
     }
 }

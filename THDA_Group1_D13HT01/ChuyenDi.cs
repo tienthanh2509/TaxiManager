@@ -64,13 +64,13 @@ namespace THDA_Group1_D13HT01
         public void Xuat()
         {
             double thanhtien = ChuyenDi.ThanhTien(quangduong);
-            Console.WriteLine("{0,12} | {1,17} | {2,10}", maxe, quangduong, string.Format("{0:0,0.#}", thanhtien));
+            Console.WriteLine("{0,12} | {1,17} | {2,14}", maxe, quangduong, string.Format("{0:0,0}", thanhtien));
         }
 
         public string XuatS()
         {
             double thanhtien = ChuyenDi.ThanhTien(quangduong);
-            return string.Format("{0,12} | {1,17} | {2,10}", maxe, quangduong, string.Format("{0:0,0.#}", thanhtien));
+            return string.Format("{0,12} | {1,17} | {2,14}", maxe, quangduong, string.Format("{0:0,0}", thanhtien));
         }
     }
 }
