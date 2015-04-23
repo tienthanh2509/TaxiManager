@@ -432,7 +432,7 @@ namespace THDA_Group1_D13HT01
                         Console.WriteLine("{4, 5} | {0,-7} | {1,-15} | {2,-32} | {3,-14}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe", "#");
                         Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
                         for (int i = 0; i < dsxe.N; i++)
-                        {    
+                        {
                             if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
                             Console.Write("{0, 5} | {1}", i, dsxe.DsXE[i].Xuat2S(loaixe));
                             Console.BackgroundColor = ConsoleColor.Black;
@@ -470,10 +470,18 @@ namespace THDA_Group1_D13HT01
                         }
                     }
 
+                    Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("{0, 12}  {1, 12}", "Mã", "Loại");
+                    Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("{0, 12}  {1, 12}", "???", unknown);
+                    Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
                     for (int i = 0; i < nloai; i++)
+                    {
+                        if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine("{0, 12}  {1, 12}", loaixe.getNameByID(i), soluong[i]);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    }
                 }
                 /**
                  * Cho biết xe nào có số km đi nhiều nhất
@@ -506,8 +514,22 @@ namespace THDA_Group1_D13HT01
                             if (tkm[i] > tkm[max])
                                 max = i;
 
-                        Console.WriteLine("{0,7}  {1,20}  {2,12}  {3,5}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe");
-                        dsxe.getXEbyID(max).Xuat2(loaixe);
+                        Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("{0,-7} | {1,-15} | {2,-32} | {3,-14} | {4}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe", "Tổng QD");
+                        Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+
+                        int[] list = new int[dsxe.N];
+                        int count = 0;
+
+                        for (int i = 0; i < count; i++)
+                            if (tkm[i] == tkm[max])
+                                list[count++] = i;
+
+                        for (int i = 0; i <= count; i++)
+                            Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0}", tkm[max]));
+
+                        //for (int i = 0; i <= dsxe.N; i++)
+                        //    Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(i).Xuat2S(loaixe).Trim(), String.Format("{0:0,0}", tkm[i]));
                     }
                     catch (Exception ex)
                     {
