@@ -656,29 +656,29 @@ namespace THDA_Group1_D13HT01
                         else if (loaixe.N < 1)
                             throw new System.ArgumentException("Chưa có dữ liệu các loại xe, không thể tiếp tục!");
 
-                        double max = 0;
-                        double[] tongtien = new double[dsxe.N];
+                        //double max = 0;
+                        //double[] tongtien = new double[dsxe.N];
 
-                        // Tìm tổng tiền của từng tài xế và lấy giá trị lớn nhất
-                        int i;
-                        for (i = 0; i < dsxe.N; i++)
-                        {
-                            tongtien[i] = 0;
-                            for (int j = 0; j < dscd.N; j++)
-                                if (dsxe.DsXE[i].Maxe == dscd.DsCD[j].Maxe)
-                                    tongtien[i] += dscd.DsCD[j].getThanhTien();
-                            if (max < tongtien[i]) max = tongtien[i];
-                        }
+                        //// Tìm tổng tiền của từng tài xế và lấy giá trị lớn nhất
+                        //int i;
+                        //for (i = 0; i < dsxe.N; i++)
+                        //{
+                        //    tongtien[i] = 0;
+                        //    for (int j = 0; j < dscd.N; j++)
+                        //        if (dsxe.DsXE[i].Maxe == dscd.DsCD[j].Maxe)
+                        //            tongtien[i] += dscd.DsCD[j].getThanhTien();
+                        //    if (max < tongtien[i]) max = tongtien[i];
+                        //}
 
-                        // Xuất thông tin
-                        Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", "STT", "Mã xe", "Biển số xe", "Tên tài xế", "Loại xe", "Tổng tiền");
+                        //// Xuất thông tin
+                        //Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        //Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", "STT", "Mã xe", "Biển số xe", "Tên tài xế", "Loại xe", "Tổng tiền");
 
-                        Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
-                        int count = 0;
-                        for (i = 0; i < dsxe.N; i++)
-                            if (max == tongtien[i])
-                                Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", ++count, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Soxe, dsxe.DsXE[i].Tentaixe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), String.Format("{0:0,#}", tongtien[i]));
+                        //Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+                        //int count = 0;
+                        //for (i = 0; i < dsxe.N; i++)
+                        //    if (max == tongtien[i])
+                        //        Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", ++count, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Soxe, dsxe.DsXE[i].Tentaixe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), String.Format("{0:0,#}", tongtien[i]));
 
                     }
                     catch (Exception ex)
@@ -810,89 +810,55 @@ namespace THDA_Group1_D13HT01
                     } while (s != "bb");
                 }
                 /**
-                 * Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất
+                 * Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất)
                  */
                 else if (chon == 11)
                 {
                     Console.Clear();
                     Console.WriteLine(">>> 11. Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất).");
 
-                    Xe[,] mang_luu_temp = new Xe[loaixe.N, dsxe.N];
+                    if (dsxe.N < 1)
+                        throw new System.ArgumentException("Chưa có dữ liệu các xe, không thể tiếp tục!");
+                    else if (dscd.N < 1)
+                        throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
 
-                    int i, j;
-                    //B1: Tìm tất cả các xe cho từng loại 
-                    int q = 0, w = 0, e = 0;
-                    for (j = 0; j < dsxe.N; j++)
-                    {
+                    float[] tkm = new float[dsxe.N];
+                    string[] bks = new string[dsxe.N];
+                    for (int i = 0; i < dsxe.N; i++)
+                    { tkm[i] = 0; bks[i] = dscd.DsCD[i].Maxe.ToString(); }
 
-                        if (dsxe.DsXE[j].Loaixe == 0)
-                        {
-                            mang_luu_temp[0, q] = new Xe();
+                    for (int i = 0; i < dsxe.N; i++)
+                        for (int j = 0; j < dscd.N; j++)
+                            if (bks[i] == dscd.DsCD[j].Maxe.ToString())
+                                tkm[i] += dscd.DsCD[j].Quangduong;
 
-                            mang_luu_temp[0, q] = dsxe.DsXE[j];
 
-                            q++;
-                        }
-                        else if (dsxe.DsXE[j].Loaixe == 1)
-                        {
-                            mang_luu_temp[1, w] = new Xe();
-                            mang_luu_temp[1, w] = dsxe.DsXE[j];
-                            w++;
-                        }
-                        else if (dsxe.DsXE[j].Loaixe == 2)
-                        {
-                            mang_luu_temp[2, e] = new Xe();
-                            mang_luu_temp[2, e] = dsxe.DsXE[j];
-                            e++;
-                        }
-                    }
-                    // B2: Tính tổng quảng đường cho tất cả các xe và tìm giá trị lớn nhất
-                    double[,] tongkm = new double[loaixe.N, dsxe.N];
-                    double maxt = 0, maxv = 0, maxhd = 0;
-                    for (i = 0; i < q; i++)
-                    {
-                        tongkm[0, i] = 0;
-                        for (j = 0; j < dscd.N; j++)
-                        {
-                            if (dscd.DsCD[j].Maxe == mang_luu_temp[0, i].Maxe)
-                                tongkm[0, i] += dscd.DsCD[j].Quangduong;
-
-                        }
-                        if (maxt < tongkm[0, i]) maxt = tongkm[0, i];
-                    }
-                    for (i = 0; i < w; i++)
-                    {
-                        tongkm[1, i] = 0;
-                        for (j = 0; j < dscd.N; j++)
-                            if (dscd.DsCD[j].Maxe == mang_luu_temp[1, i].Maxe)
-                                tongkm[1, i] += dscd.DsCD[j].Quangduong;
-                        if (maxv < tongkm[0, i]) maxv = tongkm[1, i];
-                    }
-
-                    for (i = 0; i < e; i++)
-                    {
-                        tongkm[2, i] = 0;
-                        for (j = 0; j < dscd.N; j++)
-                            if (dscd.DsCD[j].Maxe == mang_luu_temp[2, i].Maxe)
-                                tongkm[2, i] += dscd.DsCD[j].Quangduong;
-                        if (maxhd < tongkm[0, i]) maxhd = tongkm[2, i];
-                    }
-                    // B3: Xuất danh sách
                     Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("{0, 12}  {1, 12} {2,12}", "Loại", "Biển số xe", "Tổng số km");
+                    Console.WriteLine("{0,-7} | {1,-15} | {2,-32} | {3,-12} | {4, 15}", "Mã TX", "Biển kiểm soát", "Tên tài xế", "Loại xe", "Tổng QD");
                     Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
 
-                    for (i = 0; i < q; i++)
-                        if (maxt == tongkm[0, i])
-                            Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Thường", mang_luu_temp[0, i].Soxe, String.Format("{0:0,#}", tongkm[0, i]));
+                    for (int mm = 0; mm < loaixe.N; mm++)
+                    {
+                        // Tìm xe có loại xe khớp với loại xe đang duyệt và lớn nhất theo loại xe đó
+                        int max = 0;
+                        for (int i = 0; i < dsxe.N; i++)
+                            if (tkm[i] > tkm[max] && dsxe.DsXE[i].Loaixe == mm)
+                                max = i;
 
-                    for (i = 0; i < w; i++)
-                        if (maxv == tongkm[1, i])
-                            Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Vip", mang_luu_temp[1, i].Soxe, String.Format("{0:0,#}", tongkm[1, i]));
+                        // Tạo danh sách chứa các đồng hạng
+                        int[] list = new int[dsxe.N];
+                        int count = 0;
 
-                    for (i = 0; i < e; i++)
-                        if (maxhd == tongkm[2, i])
-                            Console.WriteLine("{0,12}   {1,-12}  {2,12}", "Hợp Đồng", mang_luu_temp[2, i].Soxe, String.Format("{0:0,#}", tongkm[2, i]));
+                        for (int i = 0; i < count; i++)
+                            if (tkm[i] == tkm[max] && dsxe.DsXE[i].Loaixe == mm)
+                                list[count++] = i;
+
+                        // Xuất kết quả
+                        if (mm % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
+                        for (int i = 0; i <= count; i++)
+                            Console.WriteLine("{0, -75} | {1, 15}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[max]));
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    }
                 }
                 /**
                  * Tùy chọn tự động nạp dữ liệu mỗi khi mở và tắt chương trình
