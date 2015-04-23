@@ -261,7 +261,7 @@ namespace THDA_Group1_D13HT01
                                 else if (s == "o")
                                     loaixe.Xuat();
                                 else if (s == "m")
-                                    dsxe.Xuat();
+                                    dsxe.Xuat2(loaixe);
                                 else if (s == "n")
                                     dscd.Xuat();
                             }
@@ -421,7 +421,7 @@ namespace THDA_Group1_D13HT01
                                 }
 
                             if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
-                            Console.WriteLine("{0, 5} | {1, -25}    {2, 15}    {3, 25}   {4, 17}", i, dsxe.DsXE[list[i]].Tentaixe, dsxe.DsXE[list[i]].Soxe, string.Format("{0,0:0,0}", tongtien) + " VNĐ", sochuyendi);
+                            Console.WriteLine("{0, 5} | {1, -25}    {2, 15}    {3, 25}   {4, 17}", i + 1, dsxe.DsXE[list[i]].Tentaixe, dsxe.DsXE[list[i]].Soxe, string.Format("{0,0:0,0}", tongtien) + " VNĐ", sochuyendi);
                             Console.BackgroundColor = ConsoleColor.Black;
                         }
                     }
@@ -540,7 +540,7 @@ namespace THDA_Group1_D13HT01
                         for (int i = 0; i < found; i++)
                         {
                             if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
-                            Console.Write("{0, 5} | {1}", i, dsxe.DsXE[i].Xuat2S(loaixe));
+                            Console.Write("{0, 5} | {1}", i + 1, dsxe.DsXE[list[i]].Xuat2S(loaixe));
                             Console.BackgroundColor = ConsoleColor.Black;
                         }
 
@@ -633,9 +633,6 @@ namespace THDA_Group1_D13HT01
 
                         for (int i = 0; i <= count; i++)
                             Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(max).Xuat2S(loaixe).Trim(), String.Format("{0:0,0#}", tkm[max]));
-
-                        //for (int i = 0; i <= dsxe.N; i++)
-                        //    Console.WriteLine("{0}  {1, 13}", dsxe.getXEbyID(i).Xuat2S(loaixe).Trim(), String.Format("{0:0,0}", tkm[i]));
                     }
                     catch (Exception ex)
                     {
@@ -678,9 +675,10 @@ namespace THDA_Group1_D13HT01
                         Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", "STT", "Mã xe", "Biển số xe", "Tên tài xế", "Loại xe", "Tổng tiền");
 
                         Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+                        int count = 0;
                         for (i = 0; i < dsxe.N; i++)
                             if (max == tongtien[i])
-                                Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", i++, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Soxe, dsxe.DsXE[i].Tentaixe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), String.Format("{0:0,#}", tongtien[i]));
+                                Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", ++count, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Soxe, dsxe.DsXE[i].Tentaixe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), String.Format("{0:0,#}", tongtien[i]));
 
                     }
                     catch (Exception ex)
@@ -880,7 +878,9 @@ namespace THDA_Group1_D13HT01
                         if (maxhd < tongkm[0, i]) maxhd = tongkm[2, i];
                     }
                     // B3: Xuất danh sách
+                    Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("{0, 12}  {1, 12} {2,12}", "Loại", "Biển số xe", "Tổng số km");
+                    Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
 
                     for (i = 0; i < q; i++)
                         if (maxt == tongkm[0, i])
@@ -913,7 +913,7 @@ namespace THDA_Group1_D13HT01
 
             if (Properties.Settings.Default.AUTO_LOAD_DATA)
             {
-                Console.Write("Đang lưu dữ liệu...");
+                Console.Write("Đang lưu dữ liệu chờ tí...");
                 loaixe.Xuat_File(true);
                 dsxe.Xuat_File(true);
                 dscd.Xuat_File(true);
