@@ -537,6 +537,53 @@ namespace THDA_Group1_D13HT01
                     }
                 }
                 /**
+                * Cho biết tài xế nào lái xe có số tiền của các chuyến đi nhiều nhất.");
+                * STT      Biển số xe      Tên tài xế      Tổng tiền các chuyến đi
+                */
+                else if (chon == 8)
+                {
+                    Console.Clear();
+                    Console.WriteLine(">>> 8. Cho biết tài xế nào lái xe có số tiền của các chuyến đi nhiều nhất.");
+                    try
+                    {
+                        if (dsxe.N < 1)
+                            throw new System.ArgumentException("Chưa có dữ liệu các xe, không thể tiếp tục!");
+                        else if (dscd.N < 1)
+                            throw new System.ArgumentException("Chưa có dữ liệu các chuyến đi, không thể tiếp tục!");
+                        else if (loaixe.N < 1)
+                            throw new System.ArgumentException("Chưa có dữ liệu các loại xe, không thể tiếp tục!");
+
+                        double max = 0;
+                        double[] tongtien = new double[dsxe.N];
+
+                        // Tìm tổng tiền của từng tài xế và lấy giá trị lớn nhất
+                        int i;
+                        for (i = 0; i < dsxe.N; i++)
+                        {
+                            tongtien[i] = 0;
+                            for (int j = 0; j < dscd.N; j++)
+                                if (dsxe.DsXE[i].Maxe == dscd.DsCD[j].Maxe)
+                                    tongtien[i] += dscd.DsCD[j].getThanhTien();
+                            if (max < tongtien[i]) max = tongtien[i];
+                        }
+
+                        // Xuất thông tin
+                        Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", "STT", "Mã xe", "Biển số xe", "Tên tài xế", "Loại xe", "Tổng tiền");
+
+                        Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+                        for (i = 0; i < dsxe.N; i++)
+                            if (max == tongtien[i])
+                                Console.WriteLine("{0,6}|{1,-9}|{2,-15}|{3,-25}|{4,-14}|{5,15}", i++, dsxe.DsXE[i].Maxe, dsxe.DsXE[i].Soxe, dsxe.DsXE[i].Tentaixe, loaixe.getNameByID(dsxe.DsXE[i].Loaixe), String.Format("{0:0,#}", tongtien[i]));
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+
+                    }
+                }
+                /**
                  * Cho biết thông tin chuyến đi có số km lớn nhất (số xe, loại xe, tên tài xế, số km, thành tiền).
                  */
                 else if (chon == 9)
