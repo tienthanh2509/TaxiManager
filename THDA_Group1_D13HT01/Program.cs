@@ -419,17 +419,27 @@ namespace THDA_Group1_D13HT01
                     soxe = Console.ReadLine().ToLower();
 
                     int found = 0;
+                    int[] list = new int[dsxe.N];
                     for (int i = 0; i < dsxe.N; i++)
-                        if (soxe == dsxe.DsXE[i].Soxe.ToLower())
-                        {
-                            Console.WriteLine("{0,7}  {1,20}  {2,12}  {3,5}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe");
-                            dsxe.DsXE[i].Xuat2(loaixe);
-                            found = 1;
-                            break;
-                        }
+                        if (soxe == dsxe.DsXE[i].Soxe.ToLower() || dsxe.DsXE[i].Soxe.ToLower().Contains(soxe))
+                            list[found++] = i;
 
                     if (found == 0)
                         Console.WriteLine("Không tìm thấy xe có biển số '{0}' !!!", soxe);
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("{4, 5} | {0,-7} | {1,-15} | {2,-32} | {3,-14}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe", "#");
+                        Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
+                        for (int i = 0; i < dsxe.N; i++)
+                        {    
+                            if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
+                            Console.Write("{0, 5} | {1}", i, dsxe.DsXE[i].Xuat2S(loaixe));
+                            Console.BackgroundColor = ConsoleColor.Black;
+                        }
+
+                        Console.WriteLine("\n---------------\nĐã tìm thấy {0} xe trùng khớp với từ khóa {1}.", found, soxe);
+                    }
                 }
                 /**
                  * Đếm số lượng xe của từng loại xe
