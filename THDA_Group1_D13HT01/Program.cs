@@ -537,7 +537,7 @@ namespace THDA_Group1_D13HT01
                         Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("{4, 5} | {0,-7} | {1,-15} | {2,-32} | {3,-14}", "Mã TX", "Tên tài xế", "Biển kiểm soát", "Loại xe", "#");
                         Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
-                        for (int i = 0; i < dsxe.N; i++)
+                        for (int i = 0; i < found; i++)
                         {
                             if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
                             Console.Write("{0, 5} | {1}", i, dsxe.DsXE[i].Xuat2S(loaixe));
