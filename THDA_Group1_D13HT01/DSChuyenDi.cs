@@ -114,7 +114,7 @@ namespace THDA_Group1_D13HT01
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("{0,-12} | {1,-12}  {2,-17}  {3,-10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
+            Console.WriteLine("{0,-12} | {1,-12}  {2,-17}  {3,-10}", "STT", "Mã xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
             Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
             for (int i = 0; i < n; i++)
             {
@@ -146,7 +146,7 @@ namespace THDA_Group1_D13HT01
             }
 
             string s = "";
-            s += String.Format("{0,-12} | {1,-12}  {2,-17}  {3,-10}\n", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
+            s += String.Format("{0,-12} | {1,-12}  {2,-17}  {3,-10}\n", "STT", "Mã xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
             for (int i = 0; i < n; i++)
                 s += String.Format("{0,12} | {1}\n", i + 1, dsCD[i].XuatS());
             s += String.Format("\n---------------------------\nDanh sách này có {0} chuyến đi.\n", n);
