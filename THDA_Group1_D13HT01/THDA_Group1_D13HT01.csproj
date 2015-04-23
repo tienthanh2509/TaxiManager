@@ -29,8 +29,8 @@
     <TargetCulture>vi-VN</TargetCulture>
     <ProductName>Taxi Management</ProductName>
     <PublisherName>Pham Tien Thanh</PublisherName>
-    <ApplicationRevision>18</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationVersion>1.0.1.19</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

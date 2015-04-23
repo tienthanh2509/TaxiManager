@@ -184,7 +184,7 @@ namespace THDA_Group1_D13HT01
             return s;
         }
 
-        public void Xuat_File()
+        public void Xuat_File(bool open = false)
         {
             if (n == 0)
             {
@@ -204,11 +204,14 @@ namespace THDA_Group1_D13HT01
 
                 Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHXE));
 
-                // Mở tệp với NotePad++
-                RunApps run = new RunApps();
-                //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHXE);
-                run.Run_With_NotePadPlusPlus();
+                if (open)
+                {
+                    // Mở tệp với NotePad++
+                    RunApps run = new RunApps();
+                    //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                    run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHXE);
+                    run.Run_With_NotePadPlusPlus();
+                }
             }
             catch (Exception ex)
             {

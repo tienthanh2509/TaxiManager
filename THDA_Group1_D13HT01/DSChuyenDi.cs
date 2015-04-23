@@ -114,12 +114,12 @@ namespace THDA_Group1_D13HT01
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow; Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("{0,12}  {1,12}  {2,17}  {3,10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
+            Console.WriteLine("{0,-12} | {1,-12}  {2,-17}  {3,-10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
             Console.ForegroundColor = ConsoleColor.White; Console.BackgroundColor = ConsoleColor.Black;
             for (int i = 0; i < n; i++)
             {
                 if (i % 2 != 0) Console.BackgroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("{0,12}  {1}", i + 1, dsCD[i].XuatS());
+                Console.WriteLine("{0,-12} | {1}", i + 1, dsCD[i].XuatS());
                 Console.BackgroundColor = ConsoleColor.Black;
 
                 if (i % Properties.Settings.Default.PAGINATION_PER_PAGE == 0 && i != 0)
@@ -146,9 +146,9 @@ namespace THDA_Group1_D13HT01
             }
 
             string s = "";
-            s += String.Format("{0,12}  {1,12}  {2,17}  {3,10}\n", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
+            s += String.Format("{0,-12} | {1,-12}  {2,-17}  {3,-10}\n", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
             for (int i = 0; i < n; i++)
-                s += String.Format("{0,12}  {1}\n", i + 1, dsCD[i].XuatS());
+                s += String.Format("{0,12} | {1}\n", i + 1, dsCD[i].XuatS());
             s += String.Format("\n---------------------------\nDanh sách này có {0} chuyến đi.\n", n);
 
             return s;
@@ -163,9 +163,9 @@ namespace THDA_Group1_D13HT01
             }
 
             System.IO.StreamWriter file = new System.IO.StreamWriter(Properties.Settings.Default.FILE_BAOCAO);
-            file.WriteLine("{0,12}  {1,12}  {2,17}  {3,10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
+            file.WriteLine("{0,-12}  {1,-12}  {2,-17}  {3,-10}", "STT", "Số xe", "Quãng đường (KM)", "Thành Tiền (VNĐ)");
             for (int i = 0; i < n; i++)
-                file.WriteLine("{0,12}  {1}", i + 1, dsCD[i].XuatS());
+                file.WriteLine("{0,-12}  {1}", i + 1, dsCD[i].XuatS());
             file.WriteLine("\n---------------------------\nDanh sách này có {0} chuyến đi.", n);
             file.Close();
             Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO));
@@ -177,7 +177,7 @@ namespace THDA_Group1_D13HT01
             run.Run_With_NotePadPlusPlus();
         }
 
-        public void Xuat_File()
+        public void Xuat_File(bool open = false)
         {
             if (n <= 0)
             {
@@ -197,11 +197,14 @@ namespace THDA_Group1_D13HT01
 
                 Console.WriteLine("Đã lưu vào: {0}", Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHCHUYENDI));
 
-                // Mở tệp với NotePad++
-                RunApps run = new RunApps();
-                //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
-                run.Run_With_NotePadPlusPlus();
+                if (open)
+                {
+                    // Mở tệp với NotePad++
+                    RunApps run = new RunApps();
+                    //run.Apppath = Path.GetFullPath(Properties.Settings.Default.FILE_BAOCAO);
+                    run.Argument = Path.GetFullPath(Properties.Settings.Default.FILE_DANHSACHCHUYENDI);
+                    run.Run_With_NotePadPlusPlus();
+                }
             }
             catch (Exception ex)
             {
