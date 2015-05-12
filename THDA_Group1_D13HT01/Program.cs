@@ -74,14 +74,16 @@ namespace THDA_Group1_D13HT01
                 @"  |___/   _|_|_   |___/  |_||_|   _|_|_   _\__/   _|_|_  ",
             };
 
-            var maxLength = arr.Aggregate(0, (max, line) => Math.Max(max, line.Length));
-            var x = Console.BufferWidth / 2 - maxLength / 2;
-            for (int y = 0; y < Console.WindowHeight*0.4; y++)
-            {
-                ConsoleDraw(arr, x, y);
-                Thread.Sleep(60);
-            }
-            Console.Clear();
+            //var maxLength = arr.Aggregate(0, (max, line) => Math.Max(max, line.Length));
+            //var x = Console.BufferWidth / 2 - maxLength / 2;
+            //for (int y = 0; y < Console.WindowHeight*0.4; y++)
+            //{
+            //    ConsoleDraw(arr, x, y);
+            //    Thread.Sleep(100);
+            //}
+
+            //Thread.Sleep(1000);
+            //Console.Clear();
             Console.CursorVisible = true;
 
             // Khởi tạo Class
@@ -151,7 +153,7 @@ namespace THDA_Group1_D13HT01
                 Console.WriteLine("9. Cho biết thông tin chuyến đi có số km lớn nhất (số xe, loại xe, tên tài xế, số km, thành tiền).");
                 Console.WriteLine("10. Sắp xếp danh sách tăng dần theo số xe.");
                 Console.WriteLine("11. Với mỗi loại xe, cho biết xe nào được chạy nhiều nhất (số km nhiều nhất).");
-
+                Console.WriteLine("12. Tổng số tiền công ty đã thu được qua tất cả các chuyến đi.");
                 for (int i = 0; i < Console.WindowWidth / 2; i++)
                     Console.Write("-");
                 Console.WriteLine();
@@ -907,9 +909,25 @@ namespace THDA_Group1_D13HT01
 
                     }
                 }
-                /**
-                 * Tùy chọn tự động nạp dữ liệu mỗi khi mở và tắt chương trình
-                 */
+            /**
+                * Tỏng thu nhập
+                */
+                else if (chon == 12)
+                {
+                    Console.Clear();
+                    Console.WriteLine(">>> 12. Tổng thu nhập");
+                    double tongtien = 0;
+
+                    for (int i = 0; i < dscd.N; i++)
+                    {
+                        tongtien += dscd.DsCD[i].getThanhTien();
+                    }
+
+                    Console.WriteLine("Tổng: " + String.Format("{0:0,0}", tongtien));
+                }
+            /**
+             * Tùy chọn tự động nạp dữ liệu mỗi khi mở và tắt chương trình
+             */
                 else if (chon == 999)
                 {
                     Properties.Settings.Default.AUTO_LOAD_DATA = !Properties.Settings.Default.AUTO_LOAD_DATA;
